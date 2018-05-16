@@ -122,6 +122,11 @@ The first of these two points is definitely an issue for our example, as `lodash
 
 The [`CommonsChunkPlugin`](/plugins/commons-chunk-plugin) allows us to extract common dependencies into an existing entry chunk or an entirely new chunk. Let's use this to de-duplicate the `lodash` dependency from the previous example:
 
+First, let's install this plugin: `syntax-dynamic-import`
+``` npm
+npm install --save-dev babel-plugin-syntax-dynamic-import
+```
+
 __webpack.config.js__
 
 ``` diff
@@ -134,6 +139,18 @@ __webpack.config.js__
       index: './src/index.js',
       another: './src/another-module.js'
     },
++   module: {
++     rules: [
++       {
++         test: /\.js$/,
++         exclude: /node_modules/,
++         use: {
++           loader: 'babel-loader',
++           plugins: ['syntax-dynamic-import'] // important!
++         }
++       }
++     ]
++   },
     plugins: [
       new HTMLWebpackPlugin({
         title: 'Code Splitting'
