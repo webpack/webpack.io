@@ -1,0 +1,87 @@
+@import 'vars';
+@import 'mixins';
+@import 'functions';
+
+/* fiord, elephant, alto, malibu, concrete, mine-shaft */
+
+
+.ais-Hits-list  {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+.ais-SearchBox-input {
+    appearance: none;
+    padding: 1em 3em;
+    width: 100%;
+    position: relative;
+    background-color: getColor(elephant);
+    border: 1px solid #c4c8d8;
+    border-radius: 5px;
+    color: getColor(white);
+    height: 50px;
+}
+ul.ais-Hits-list {
+    padding: 0;
+}
+
+.hit-card {
+    height: 100%;
+}
+
+.ais-SearchBox-reset svg,
+.ais-SearchBox-submit svg {
+    position: relative;
+    right: 0;
+    fill: getColor(white);
+    background-color: getColor(elephant);
+}
+
+.ais-SearchBox-reset {
+    display: none;
+}
+
+button.ais-SearchBox-submit {
+    border: none;
+    position: relative;
+    left: 5px;
+    bottom: 38px;
+    background-color: getColor(elephant);
+}
+
+.ais-Hits-item {
+    flex: 0 0 100%;
+    border-top: 1px solid getColor(denim);
+    margin: 0 !important;
+}
+
+.product-wrapper {
+    padding: 10px;
+}
+
+.product-summary {
+    display: flex;
+    float: right;
+}
+
+.product-title, .product-name {
+    padding: .5em 1em 1em 0.2em;
+}
+
+.product-avatar {
+    img {
+        border-radius: 25px;
+        border: 1px solid getColor(denim);
+    }
+}
+
+.product-desc {
+    color: #1a6bac;
+    p {
+        width: 25rem;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+}

@@ -2,7 +2,7 @@
 title: Command Line Interface
 sort: 2
 contributors:
-  - ev1stensberg
+  - evenstensberg
   - simon04
   - tbroadley
   - chenxsan
