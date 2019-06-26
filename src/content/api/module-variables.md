@@ -9,6 +9,7 @@ contributors:
   - tbroadley
   - byzyk
   - EugeneHlushko
+  - pranshuchittora
 related:
   - title: CommonJS
     url: https://en.wikipedia.org/wiki/CommonJS
@@ -134,6 +135,15 @@ The internal chunk loading function. Takes two arguments:
 ### `__webpack_modules__` (webpack-specific)
 
 Access to the internal object of all modules.
+
+
+### `__webpack_get_script_filename__` (webpack-specific)
+
+`function (chunkId)`
+
+Returns the filename of chunk by Id.
+
+T> It is assignable, which allows changing the filename used by the runtime for chunk loading.
 
 
 ### `__webpack_hash__` (webpack-specific)
