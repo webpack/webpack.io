@@ -252,7 +252,18 @@ Entrypoint index = index.bundle.js
 ...
 ```
 
-As `import()` returns a promise, it can be used with [`async` functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function). However, this requires using a pre-processor like Babel and the [Syntax Dynamic Import Babel Plugin](https://babeljs.io/docs/plugins/syntax-dynamic-import/#installation). Here's how it would simplify the code:
+As `import()` returns a promise, it can be used with [`async` functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function). However, this requires using a pre-processor like Babel and the [Syntax Dynamic Import Babel Plugin](https://babeljs.io/docs/plugins/syntax-dynamic-import/#installation). For `async await` `babel-polyfill` is required. Common usage can be found [here] https://babeljs.io/docs/en/babel-polyfill/. Or in case you are using mutiple entries. 
+
+Your webpack.config.js entry can look like: 
+
+```
+entry: {
+    app: ['babel-polyfill', './src/index.js'],
+    print: './print.js'
+}
+ ```
+
+Here's how it would simplify the code:
 
 __src/index.js__
 
@@ -279,7 +290,7 @@ __src/index.js__
     document.body.appendChild(component);
   });
 ```
-
+For more detailed setup please install refer this guide https://www.robinwieruch.de/minimal-react-webpack-babel-setup/
 
 ## Prefetching/Preloading modules
 
