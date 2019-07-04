@@ -9,6 +9,7 @@ contributors:
   - eko3alpha
   - refactorized
   - byzyk
+  - prondubuisi
 ---
 
 webpack has a rich plugin interface. Most of the features within webpack itself use this plugin interface. This makes webpack __flexible__.
@@ -33,6 +34,7 @@ Name                                                     | Description
 [`LoaderOptionsPlugin`](/plugins/loader-options-plugin)      | Used for migrating from webpack 1 to 2
 [`MinChunkSizePlugin`](/plugins/min-chunk-size-plugin)       | Keep chunk size above the specified limit
 [`MiniCssExtractPlugin`](/plugins/mini-css-extract-plugin)       | creates a CSS file per JS file which requires CSS
+[`NamedModulesPlugin`](/plugins/named-modules-webpack-plugin)     | Displays relative path of modules when HMR is enabled
 [`NoEmitOnErrorsPlugin`](/configuration/optimization/#optimization-noemitonerrors)  | Skip the emitting phase when there are compilation errors
 [`NormalModuleReplacementPlugin`](/plugins/normal-module-replacement-plugin) | Replace resource(s) that matches a regexp
 [`NpmInstallWebpackPlugin`](/plugins/npm-install-webpack-plugin) | Auto-install missing dependencies during development
