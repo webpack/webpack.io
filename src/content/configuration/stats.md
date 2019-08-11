@@ -12,19 +12,22 @@ contributors:
   - Raiondesu
   - EugeneHlushko
   - grgur
+  - tigt
 ---
 
 The `stats` option lets you precisely control what bundle information gets displayed. This can be a nice middle ground if you don't want to use `quiet` or `noInfo` because you want some bundle information, but not all of it.
 
-T> For webpack-dev-server, this property needs to be in the `devServer` object.
+T> For [`webpack-dev-server`](https://webpack.js.org/configuration/dev-server/), this property must be in [the `devServer` object](https://webpack.js.org/configuration/dev-server/#devserver).
 
-W> This option does not have any effect when using the Node.js API.
+W> This option has no effect when using [the Node.js API](https://webpack.js.org/api/node/).
 
 ## `stats`
 
 `object` `string`
 
-There are some presets available to use as a shortcut. Use them like this:
+### Presets
+
+Some presets are available as a shortcut to specify individual options. Use them like this:
 
 ```js
 module.exports = {
@@ -33,16 +36,18 @@ module.exports = {
 };
 ```
 
-| Preset              | Alternative | Description                                       |
-|---------------------|-------------|---------------------------------------------------|
-| `'errors-only'`     | _none_      | Only output when errors happen                    |
-| `'errors-warnings'` | _none_      | Only output errors and warnings happen            |
-| `'minimal'`         | _none_      | Only output when errors or new compilation happen |
-| `'none'`            | `false`     | Output nothing                                    |
-| `'normal'`          | `true`      | Standard output                                   |
-| `'verbose'`         | _none_      | Output everything                                 |
+| Preset               | Description                                        |
+|----------------------|----------------------------------------------------|
+| `'errors-only'`      | Output only when errors happen                     |
+| `'errors-warnings'`  | Output only when errors or warnings happen         |
+| `'minimal'`          | Output only when errors or new compilations happen |
+| `'none'` or `false`  | No output                                          |
+| `'normal'` or `true` | Default output                                     |
+| `'verbose'`          | Output everything                                  |
 
-For more granular control, it is possible to specify exactly what information you want. Please note that all of the options in this object are optional.
+### In-depth configuration
+
+For more granular control, you can specify exactly what information to show. Please note that all properties in this object are optional.
 
 <!-- eslint-skip -->
 
@@ -54,16 +59,16 @@ module.exports = {
     // (has precedence over local webpack defaults)
     all: undefined,
 
-    // Add asset Information
+    // Add asset information
     assets: true,
 
     // Sort assets by a field
     // You can reverse the sort with `!field`.
     // Some possible values: 'id' (default), 'name', 'size', 'chunks', 'failed', 'issuer'
-    // For a complete list of fields see the bottom of the page
+    // For a complete list of fields, see the bottom of the page
     assetsSort: 'field',
 
-    // Add build date and time information
+    // Add build’s date and time information
     builtAt: true,
 
     // Add information about cached (not built) modules
@@ -115,21 +120,21 @@ module.exports = {
     errorDetails: true,
 
     // Exclude assets from being displayed in stats
-    // This can be done with a String, a RegExp, a Function getting the assets name
-    // and returning a boolean or an Array of the above.
-    // Possible values: String | RegExp | (assetName) => boolean | [String, RegExp, (assetName) => boolean]
+    // This can be done with a String, a RegExp, a Function that receives the asset’s name
+    // and returns a Boolean, or an Array of the above 3 data types.
+    // Possible values: String | RegExp | (assetName) => Boolean | [String, RegExp, (assetName) => Boolean]
     // Example values: 'filter' | /filter/ | ['filter', /filter/] | (assetName) => assetName.contains('moduleA')
     excludeAssets: [],
 
     // Exclude modules from being displayed in stats
-    // This can be done with a String, a RegExp, a Function getting the modules source
-    // and returning a boolean or an Array of the above.
-    // Possible values: String | RegExp | (moduleSource) => boolean | [String, RegExp, (moduleSource) => boolean]
+    // This can be done with a String, a RegExp, a Function that receives the module’s source
+    // and returns a boolean, or an Array of the above 3 data types.
+    // Possible values: String | RegExp | (moduleSource) => Boolean | [String, RegExp, (moduleSource) => Boolean]
     // Example values: 'filter' | /filter/ | ['filter', /filter/] | (moduleSource) => true
     excludeModules: exclude || [],
 
     // See excludeModules
-    // Possible values: String | RegExp | (moduleSource) => boolean | [String, RegExp, (moduleSource) => boolean]
+    // Possible values: String | RegExp | (moduleSource) => Boolean | [String, RegExp, (moduleSource) => Boolean]
     // Example values: 'filter' | /filter/ | ['filter', /filter/] | (moduleSource) => true
     exclude: excludeModules || [],
 
@@ -148,18 +153,18 @@ module.exports = {
     //    Collapsed groups are displayed in expanded state.
     logging: 'info',
 
-    // Include debug information of specified loggers such as plugins or loaders.
+    // Include debug information of specified loggers, such as plugins or loaders.
     // Provide an array of filters to match plugins or loaders.
     // Filters can be Strings, RegExps or Functions.
     // when stats.logging is false, stats.loggingDebug option is ignored.
-    // Possible values: String | RegExp | (warning) => boolean | [String, RegExp, (name) => boolean]
+    // Possible values: String | RegExp | (warning) => Boolean | [String, RegExp, (name) => Boolean]
     // Example values: 'MyPlugin' | /MyPlugin/ | ['MyPlugin', /MyPlugin/] | (name) => name.contains('MyPlugin')
     loggingDebug: [],
 
-    // Enable stack traces in logging output for errors, warnings and traces.
+    // Enable stack traces in logging output for errors, warnings, and traces.
     loggingTrace: true,
 
-    // Set the maximum number of modules to be shown
+    // The maximum number of modules to be shown
     maxModules: 15,
 
     // Add built modules information
@@ -205,16 +210,16 @@ module.exports = {
     warnings: true,
 
     // Filter warnings to be shown (since webpack 2.4.0),
-    // can be a String, Regexp, a function getting the warning and returning a boolean
+    // Can be a String, Regexp, a Function that receives the warning and returns aBboolean,
     // or an Array of a combination of the above. First match wins.
-    // Possible values: String | RegExp | (warning) => boolean | [String, RegExp, (warning) => boolean]
+    // Possible values: String | RegExp | (warning) => Boolean | [String, RegExp, (warning) => Boolean]
     // Example values: 'filter' | /filter/ | ['filter', /filter/] | (warning) => true
     warningsFilter: null
   }
 }
 ```
 
-If you want to use one of the pre-defined behaviours e.g. `'minimal'` but still override one or more of the rules, see [the source code](https://github.com/webpack/webpack/blob/master/lib/Stats.js#L1394-L1401). You would want to copy the configuration options from `case 'minimal': ...` and add your additional rules while providing an object to `stats`.
+If you want to use one of the presets (e.g. `'minimal'`) but override some of its rules, see [the source code](https://github.com/webpack/webpack/blob/master/lib/Stats.js#L1394-L1401). You would want to copy the configuration options from `case 'minimal': …`, then add your additional rules in the object for `stats`.
 
 __webpack.config.js__
 
@@ -237,19 +242,16 @@ module.exports = {
 
 ### Sorting fields
 
-For `assetsSort`, `chunksSort` and `modulesSort` there are several possible fields that you can sort items by:
+For `assetsSort`, `chunksSort`, and `modulesSort`, there are several possible fields that you can sort items by:
 
-- `id` is the item's id;
-- `name` - a item's name that was assigned to it upon importing;
-- `size` - a size of item in bytes;
-- `chunks` - what chunks the item originates from (for example, if there are multiple subchunks for one chunk - the subchunks will be grouped together according to their main chunk);
-- `errors` - amount of errors in items;
-- `warnings` - amount of warnings in items;
+- `id` - the item's id;
+- `name` - the item's name that was assigned to it upon importing;
+- `size` - the size of the item in bytes;
+- `chunks` - what chunks the item originates from (for example, if there are multiple subchunks for one chunk: the subchunks will be grouped together according to their main chunk);
+- `errors` - number of errors in item;
+- `warnings` - number of warnings in item;
 - `failed` - whether the item has failed compilation;
 - `cacheable` - whether the item is cacheable;
-- `built` - whether the asset has been built;
-- `prefetched` - whether the asset will be prefetched;
-- `optional` - whether the asset is optional;
 - `identifier` - identifier of the item;
 - `index` - item's processing index;
 - `index2`
@@ -257,11 +259,17 @@ For `assetsSort`, `chunksSort` and `modulesSort` there are several possible fiel
 - `issuer` - an identifier of the issuer;
 - `issuerId` - an id of the issuer;
 - `issuerName` - a name of the issuer;
-- `issuerPath` - a full issuer object. There's no real need to sort by this field;
+- `issuerPath` - a full issuer object. There's no real need to sort by this field.
+
+#### `assetsSort` only
+
+- `built` - whether the asset has been built;
+- `prefetched` - whether the asset will be prefetched;
+- `optional` - whether the asset is optional.
 
 ### Colors
 
-You can specify your own terminal output colors using [ANSI escape sequences](https://en.wikipedia.org/wiki/ANSI_escape_code)
+You can specify your own terminal output colors using [ANSI escape sequences](https://en.wikipedia.org/wiki/ANSI_escape_code):
 
 ```js
 module.exports = {
