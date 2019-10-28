@@ -13,6 +13,7 @@ contributors:
   - Loonride
   - dmohns
   - EslamHiko
+  - fokusferit
   - digitaljohn
 ---
 
@@ -27,7 +28,7 @@ T> Options that are compatible with [webpack-dev-middleware](https://github.com/
 
 `object`
 
-This set of options is picked up by [webpack-dev-server](https://github.com/webpack/webpack-dev-server) and can be used to change its behavior in various ways. Here's a simple example that gzips and serves everything from our `dist/` directory in the project root:
+This set of options is picked up by [webpack-dev-server](https://github.com/webpack/webpack-dev-server) and can be used to change its behavior in various ways. Here's a basic example that gzips and serves everything from our `dist/` directory in the project root:
 
 __webpack.config.js__
 
@@ -86,7 +87,7 @@ module.exports = {
 
 `[string]`
 
-This option allows you to whitelist services that are allowed to access the dev server.
+This option allows given services to access the dev server.
 
 __webpack.config.js__
 
@@ -699,13 +700,13 @@ webpack-dev-server --lazy
 
 T> [`watchOptions`](#devserverwatchoptions-) will have no effect when used with __lazy mode__.
 
-T> If you use the CLI, make sure __inline mode__ is disabled.
+T> If you use the CLI, make sure __inline mode__ is turned off.
 
 ## `devServer.liveReload`
 
 `boolean = true`
 
-By default, the dev-server will reload/refresh the page when file changes are detected. [`devServer.hot`](#devserverhot) option must be disabled or [`devServer.watchContentBase`](#devserverwatchcontentbase) option must be enabled in order for `liveReload` to take effect. Disable `devServer.liveReload` by setting it to `false`:
+By default, the dev-server will reload/refresh the page when file changes are detected. [`devServer.hot`](#devserverhot) option must be turned off or [`devServer.watchContentBase`](#devserverwatchcontentbase) option must be enabled in order for `liveReload` to take effect. Disable `devServer.liveReload` by setting it to `false`:
 
 
 __webpack.config.js__
@@ -1522,7 +1523,7 @@ webpack-dev-server --useLocalIp
 
 `boolean`
 
-Tell dev-server to watch the files served by the [`devServer.contentBase`](#devservercontentbase) option. It is disabled by default. When enabled, file changes will trigger a full page reload.
+Tell dev-server to watch the files served by the [`devServer.contentBase`](#devservercontentbase) option. It is turned off by default. When enabled, file changes will trigger a full page reload.
 
 __webpack.config.js__
 
@@ -1594,7 +1595,7 @@ module.exports = {
   //...
   devServer: {
     writeToDisk: (filePath) => {
-      return /superman\.css$/.test(filePath);
+      return /styles\.css$/.test(filePath);
     }
   }
 };

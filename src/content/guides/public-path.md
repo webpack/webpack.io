@@ -5,6 +5,7 @@ contributors:
   - rafaelrinaldi
   - chrisVillanueva
   - gonzoyumo
+  - fokusferit
 ---
 
 The `publicPath` configuration option can be quite useful in a variety of scenarios. It allows you to specify the base path for all the assets within your application.
@@ -18,7 +19,7 @@ There are a few use cases in real applications where this feature becomes especi
 
 In development for example, we might have an `assets/` folder that lives on the same level of our index page. This is fine, but what if we wanted to host all these static assets on a CDN in production?
 
-To approach this problem you can easily use a good old environment variable. Let's say we have a variable `ASSET_PATH`:
+To approach this problem you can use a good old environment variable. Let's say we have a variable `ASSET_PATH`:
 
 ``` js
 import webpack from 'webpack';
@@ -42,7 +43,7 @@ export default {
 
 ### On The Fly
 
-Another possible use case is to set the `publicPath` on the fly. webpack exposes a global variable called `__webpack_public_path__` that allows you to do that. So, in your application's entry point, you can simply do this:
+Another possible use case is to set the `publicPath` on the fly. webpack exposes a global variable called `__webpack_public_path__` that allows you to do that. So, in your application's entry point, you can do this:
 
 ```js
 __webpack_public_path__ = process.env.ASSET_PATH;

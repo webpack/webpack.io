@@ -10,6 +10,7 @@ contributors:
   - EugeneHlushko
   - AnayaDesign
   - wizardofhogwarts
+  - fokusferit
 ---
 
 If you've been following the guides from the start, you will now have a small project that shows "Hello webpack". Now let's try to incorporate some other assets, like images, to see how they can be handled.
@@ -154,7 +155,7 @@ Note that you can, and in most cases should, [minimize css](/plugins/mini-css-ex
 
 ## Loading Images
 
-So now we're pulling in our CSS, but what about our images like backgrounds and icons? Using the [file-loader](/loaders/file-loader) we can easily incorporate those in our system as well:
+So now we're pulling in our CSS, but what about our images like backgrounds and icons? Using the [file-loader](/loaders/file-loader) we can incorporate those in our system as well:
 
 ``` bash
 npm install --save-dev file-loader
@@ -326,7 +327,7 @@ __project__
   |- /node_modules
 ```
 
-With the loader configured and fonts in place, you can incorporate them via an `@font-face` declaration. The local `url(...)` directive will be picked up by webpack just as it was with the image:
+With the loader configured and fonts in place, you can incorporate them via an `@font-face` declaration. The local `url(...)` directive will be picked up by webpack as it was with the image:
 
 __src/style.css__
 
@@ -454,7 +455,7 @@ __src/data.xml__
 </note>
 ```
 
-Now you can `import` any one of those four types of data (JSON, CSV, TSV, XML) and the `Data` variable you import it to will contain parsed JSON for easy consumption:
+Now you can `import` any one of those four types of data (JSON, CSV, TSV, XML) and the `Data` variable you import it to will contain parsed JSON for consumption:
 
 __src/index.js__
 
@@ -504,7 +505,7 @@ The coolest part of everything mentioned above is that loading assets this way a
 + |  |  |– img.png
 ```
 
-This setup makes your code a lot more portable as everything that is closely coupled now lives together. Let's say you want to use `/my-component` in another project, simply copy or move it into the `/components` directory over there. As long as you've installed any _external dependencies_ and your _configuration has the same loaders_ defined, you should be good to go.
+This setup makes your code a lot more portable as everything that is closely coupled now lives together. Let's say you want to use `/my-component` in another project, copy or move it into the `/components` directory over there. As long as you've installed any _external dependencies_ and your _configuration has the same loaders_ defined, you should be good to go.
 
 However, let's say you're locked into your old ways or you have some assets that are shared between multiple components (views, templates, modules, etc.). It's still possible to store these assets in a base directory and even use [aliasing](/configuration/resolve/#resolvealias) to make them easier to `import`.
 

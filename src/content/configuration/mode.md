@@ -6,6 +6,7 @@ contributors:
   - byzyk
   - mrichmond
   - Fental
+  - fokusferit
 related:
   - title: 'webpack default options (source code)'
     url: https://github.com/webpack/webpack/blob/master/lib/WebpackOptionsDefaulter.js
@@ -17,7 +18,7 @@ Providing the `mode` configuration option tells webpack to use its built-in opti
 
 ## Usage
 
-Just provide the `mode` option in the config:
+Only provide the `mode` option in the config:
 
 ```javascript
 module.exports = {

@@ -17,6 +17,7 @@ contributors:
   - eemeli
   - EugeneHlushko
   - g-plane
+  - fokusferit
 ---
 
 The top-level `output` key contains set of options instructing webpack on how and where it should output your bundles, assets and anything else you bundle or load with webpack.
@@ -161,7 +162,7 @@ See [`output.devtoolModuleFilenameTemplate`](#outputdevtoolmodulefilenametemplat
 
 > Avoid using this option as it is __deprecated__ and will soon be removed.
 
-Enables line to line mapping for all or some modules. This produces a simple source map where each line of the generated source is mapped to the same line of the original source. This is a performance optimization and should only be used if all input lines match generated lines.
+Enables line to line mapping for all or some modules. This produces a basic source map where each line of the generated source is mapped to the same line of the original source. This is a performance optimization and should only be used if all input lines match generated lines.
 
 Pass a boolean to enable or disable this feature for all modules (defaults to `false`). Use `object` for granular control, e.g. to enable this feature for all javascript files within a certain directory:
 
@@ -335,7 +336,7 @@ module.exports = {
 };
 ```
 
-Make sure to read the [Caching guide](/guides/caching) for details. There are more steps involved than just setting this option.
+Make sure to read the [Caching guide](/guides/caching) for details. There are more steps involved than only setting this option.
 
 Note this option is called filename but you are still allowed to use something like `'js/[name]/bundle.js'` to create a folder structure.
 
@@ -901,7 +902,7 @@ This option specifies the __public URL__ of the output directory when referenced
 
 The value of the option is prefixed to every URL created by the runtime or loaders. Because of this __the value of this option ends with `/`__ in most cases.
 
-Simple rule: The URL of your [`output.path`](#outputpath) from the view of the HTML page.
+General rule: The URL of your [`output.path`](#outputpath) from the view of the HTML page.
 
 __webpack.config.js__
 

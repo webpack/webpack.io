@@ -9,6 +9,7 @@ contributors:
   - byzyk
   - EugeneHlushko
   - wizardofhogwarts
+  - fokusferit
 ---
 
 Plugins are a key piece of the webpack ecosystem and provide the community with
@@ -85,7 +86,7 @@ The moral of the story is that there are a variety of ways to `hook` into the
 ## Custom Hooks
 
 In order to add a new hook to the compilation for other plugins to `tap` into,
-simply `require` the necessary hook class from `tapable` and create one:
+you can `require` the necessary hook class from `tapable` and create one:
 
 ``` js
 const SyncHook = require('tapable').SyncHook;
@@ -140,7 +141,7 @@ Logging API is available since the release of webpack 4.37. When `logging` is en
 
 - Plugins should prefer to use `compilation.getLogger('PluginName')` for logging. This kind of logging is stored to the Stats and formatted accordingly. It can be filtered and exported by the user.
 - Plugins may use the `compiler.getInfrastructureLogger('PluginName')` for logging. Using `infrastructure` logging is not stored in the Stats and therefore not formatted. It's usually logged to the console/dashboard/GUI directly. It can be filtered by the user.
-- Plugins may use special fallback logic for detecting logging support `compilation.getLogger ? compilation.getLogger('PluginName') : console` to provide a fallback for cases when an older webpack version is used which does not support `getLogger` method on `compilation` object.
+- Plugins may use specific fallback logic for detecting logging support `compilation.getLogger ? compilation.getLogger('PluginName') : console` to provide a fallback for cases when an older webpack version is used which does not support `getLogger` method on `compilation` object.
 
 ## Next Steps
 

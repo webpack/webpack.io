@@ -7,6 +7,7 @@ contributors:
   - tashian
   - skipjack
   - AnayaDesign
+  - fokusferit
 ---
 
 Let's start by clearing up a common misconception. webpack is a module bundler like [Browserify](http://browserify.org/) or [Brunch](https://brunch.io/). It is _not a task runner_ like [Make](https://www.gnu.org/software/make/), [Grunt](https://gruntjs.com/), or [Gulp](https://gulpjs.com/). Task runners handle automation of common development tasks such as linting, building, or testing your project. Compared to bundlers, task runners have a higher level focus. You can still benefit from their higher level tooling while leaving the problem of bundling to webpack.
@@ -18,7 +19,7 @@ The good news is that, while there is some overlap, task runners and bundlers ca
 
 ## NPM Scripts
 
-Often webpack users use npm [`scripts`](https://docs.npmjs.com/misc/scripts) as their task runner. This is a good starting point. Cross-platform support can become a problem, but there are several workarounds for that. Many, if not most users, get by with simple npm `scripts` and various levels of webpack configuration and tooling.
+Often webpack users use npm [`scripts`](https://docs.npmjs.com/misc/scripts) as their task runner. This is a good starting point. Cross-platform support can become a problem, but there are several workarounds for that. Many, if not most users, get by with only using npm `scripts` and various levels of webpack configuration and tooling.
 
 So while webpack's core focus is bundling, there are a variety of extensions that can enable you to use it for jobs typical of a task runner. Integrating a separate tool adds complexity, so be sure to weigh the pros and cons before going forward.
 
@@ -64,7 +65,7 @@ Gulp is also a fairly straightforward integration with the help of the [`webpack
 npm install --save-dev webpack-stream
 ```
 
-Just `require('webpack-stream')` instead of `webpack` and optionally pass it an configuration:
+Use `require('webpack-stream')` instead of `webpack` and optionally pass it an configuration:
 
 __gulpfile.js__
 
@@ -85,7 +86,7 @@ For more information, please visit the [repository](https://github.com/shama/web
 
 ## Mocha
 
-The [`mocha-webpack`](https://github.com/zinserjan/mocha-webpack) utility can be used for a clean integration with Mocha. The repository offers more details on the pros and cons but essentially `mocha-webpack` is a simple wrapper that provides almost the same CLI as Mocha itself and provides various webpack functionality like an improved watch mode and improved path resolution. Here is a small example of how you would install it and use it to run a test suite (found within `./test`):
+The [`mocha-webpack`](https://github.com/zinserjan/mocha-webpack) utility can be used for a clean integration with Mocha. The repository offers more details on the pros and cons but essentially `mocha-webpack` is a wrapper that provides almost the same CLI as Mocha itself and provides various webpack functionality like an improved watch mode and improved path resolution. Here is a small example of how you would install it and use it to run a test suite (found within `./test`):
 
 ``` bash
 npm install --save-dev webpack mocha mocha-webpack
@@ -97,7 +98,7 @@ For more information, please visit the [repository](https://github.com/zinserjan
 
 ## Karma
 
-The [`karma-webpack`](https://github.com/webpack-contrib/karma-webpack) package allows you to use webpack to pre-process files in [Karma](https://karma-runner.github.io/1.0/index.html). It also makes use of [`webpack-dev-middleware`](https://github.com/webpack/webpack-dev-middleware) and allows passing configurations for both. A simple example may look something like this:
+The [`karma-webpack`](https://github.com/webpack-contrib/karma-webpack) package allows you to use webpack to pre-process files in [Karma](https://karma-runner.github.io/1.0/index.html). It also makes use of [`webpack-dev-middleware`](https://github.com/webpack/webpack-dev-middleware) and allows passing configurations for both. An example might look like this:
 
 ``` bash
 npm install --save-dev webpack karma karma-webpack

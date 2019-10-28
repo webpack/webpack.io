@@ -129,7 +129,7 @@ T> Combine with `parallelism: 1` for better results.
 
 `string`
 
-Use this option to generate a JSON file containing webpack "records" -- pieces of data used to store module identifiers across multiple builds. You can use this file to track how modules change between builds. To generate one, simply specify a location:
+Use this option to generate a JSON file containing webpack "records" -- pieces of data used to store module identifiers across multiple builds. You can use this file to track how modules change between builds. To generate one, specify a location:
 
 __webpack.config.js__
 

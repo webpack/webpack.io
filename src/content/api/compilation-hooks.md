@@ -8,6 +8,7 @@ contributors:
   - misterdev
   - wizardofhogwarts
   - EugeneHlushko
+  - fokusferit
 ---
 
 The `Compilation` module is used by the `Compiler` to create new compilations
@@ -565,7 +566,7 @@ Any additional chunk assets are stored in `compilation.additionalChunkAssets`.
 
 - Callback Parameters: `chunks`
 
-Here's an example that simply adds a banner to each chunk.
+Here's an example that adds a banner to each chunk.
 
 ``` js
 compilation.hooks

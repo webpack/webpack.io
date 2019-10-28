@@ -4,13 +4,14 @@ contributors:
   - skipjack
   - TheLarkInn
   - byzyk
+  - fokusferit
 related:
   - webpack 3: Official Release!!
 ---
 
 In the past, one of webpack’s trade-offs when bundling was that each module in your bundle would be wrapped in individual function closures. These wrapper functions made it slower for your JavaScript to execute in the browser. In comparison, tools like Closure Compiler and RollupJS ‘hoist’ or concatenate the scope of all your modules into one closure and allow for your code to have a faster execution time in the browser.
 
-This plugin will enable the same concatenation behavior in webpack. By default this plugin is already enabled in [production `mode`](/configuration/mode/#mode-production) and disabled otherwise. If you need to override the production `mode` optimization, set the [`optimization.concatenateModules` option](/configuration/optimization/#optimizationconcatenatemodules) to `false`. To enable concatenation behavior in other modes, you can add `ModuleConcatenationPlugin` manually or use the `optimization.concatenateModules` option:
+This plugin will enable the same concatenation behavior in webpack. By default this plugin is already enabled in [production `mode`](/configuration/mode/#mode-production) and turned off otherwise. If you need to override the production `mode` optimization, set the [`optimization.concatenateModules` option](/configuration/optimization/#optimizationconcatenatemodules) to `false`. To enable concatenation behavior in other modes, you can add `ModuleConcatenationPlugin` manually or use the `optimization.concatenateModules` option:
 
 ```js
 new webpack.optimize.ModuleConcatenationPlugin();
@@ -89,7 +90,7 @@ function tryToAdd(group, module) {
 
 ### Debugging Optimization Bailouts
 
-When using the webpack CLI, the `--display-optimization-bailout` flag will display bailout reasons. When using the webpack config, just add the following to the `stats` object:
+When using the webpack CLI, the `--display-optimization-bailout` flag will display bailout reasons. When using the webpack config, add the following to the `stats` object:
 
 ```js
 module.exports = {

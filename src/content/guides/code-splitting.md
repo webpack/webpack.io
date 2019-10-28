@@ -28,6 +28,7 @@ contributors:
   - byzyk
   - AnayaDesign
   - wizardofhogwarts
+  - fokusferit
 related:
   - title: <link rel=”prefetch/preload”> in webpack
     url: https://medium.com/webpack/link-rel-prefetch-preload-in-webpack-51a52358f84c
@@ -241,7 +242,7 @@ __src/index.js__
 
 The reason we need `default` is that since webpack 4, when importing a CommonJS module, the import will no longer resolve to the value of `module.exports`, it will instead create an artificial namespace object for the CommonJS module. For more information on the reason behind this, read [webpack 4: import() and CommonJs](https://medium.com/webpack/webpack-4-import-and-commonjs-d619d626b655)
 
-Note the use of `webpackChunkName` in the comment. This will cause our separate bundle to be named `lodash.bundle.js` instead of just `[id].bundle.js`. For more information on `webpackChunkName` and the other available options, see the [`import()` documentation](/api/module-methods/#import-1). Let's run webpack to see `lodash` separated out to a separate bundle:
+Note the use of `webpackChunkName` in the comment. This will cause our separate bundle to be named `lodash.bundle.js` instead of `[id].bundle.js`. For more information on `webpackChunkName` and the other available options, see the [`import()` documentation](/api/module-methods#import-1). Let's run webpack to see `lodash` separated out to a separate bundle:
 
 ``` bash
 ...
@@ -287,12 +288,12 @@ T> It is possible to provide a [dynamic expression](/api/module-methods/#dynamic
 
 webpack 4.6.0+ adds support for prefetching and preloading.
 
-Using these inline directives while declaring your imports allows webpack to output “Resource Hint” which tells the browser that for:
+Using these inline directives while declaring your imports allows webpack to output a "Resource Hint" which tells the browser how to prioritize the script loading:
 
 - prefetch: resource is probably needed for some navigation in the future
 - preload: resource might be needed during the current navigation
 
-Simple prefetch example can be having a `HomePage` component, which renders a `LoginButton` component which then on demand loads a `LoginModal` component after being clicked.
+One prefetch example can be having a `HomePage` component, which renders a `LoginButton` component which then on demand loads a `LoginModal` component after being clicked.
 
 __LoginButton.js__
 
@@ -312,7 +313,7 @@ Preload directive has a bunch of differences compared to prefetch:
 - A preloaded chunk should be instantly requested by the parent chunk. A prefetched chunk can be used anytime in the future.
 - Browser support is different.
 
-Simple preload example can be having a `Component` which always depends on a big library that should be in a separate chunk.
+A preload example can be having a `Component` which always depends on a big library that should be in a separate chunk.
 
 Let's imagine a component `ChartComponent` which needs huge `ChartingLibrary`. It displays a `LoadingIndicator` when rendered and instantly does an on demand import of `ChartingLibrary`:
 

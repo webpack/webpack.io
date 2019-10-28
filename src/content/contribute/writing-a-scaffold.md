@@ -77,7 +77,7 @@ module.exports = class WebpackGenerator extends Generator {
 
 ## Configuring Webpack
 
-So far, we've made an interaction with the user. If you were coding along, great! So how do we proceed from here? Let's try to build a simple webpack configuration that has an [entry point](/configuration/entry-context/#entry), an [output](/concepts/#output), and a [context property](/configuration/entry-context/#context). For this, we need to create a `webpackOptions` property on our `dev` object. This is where `entry`, `output` and `context` is going to be hooked up, later resulting in a `webpack.config.js`.
+So far, we've made an interaction with the user. If you were coding along, great! So how do we proceed from here? Let's try to build a webpack configuration that has an [entry point](/configuration/entry-context/#entry), an [output](/concepts/#output), and a [context property](/configuration/entry-context/#context). For this, we need to create a `webpackOptions` property on our `dev` object. This is where `entry`, `output` and `context` is going to be hooked up, later resulting in a `webpack.config.js`.
 
 T> Define the `webpackOptions` property in the constructor to keep your scaffold as clean as possible!
 
@@ -111,7 +111,7 @@ module.exports = class WebpackGenerator extends Generator {
 ## Dev Configurations
 
 Congratulations! You've now created the base of a `webpack-scaffold`! Let's now add some more stuff to our future configuration file!
-We are going to follow good convention, and extract our configuration into another file, named `dev-config.js`. As this is just regular JavaScript, we can make the module a function, and supply our `entry` as a parameter for us to build up a configuration file from.
+Following best practices, we are going to extract our configuration into another JavaScript file, named `dev-config.js`. Export a function, and supply our `entry` as a parameter for us to build up a configuration file from.
 
 __dev-config.js__
 

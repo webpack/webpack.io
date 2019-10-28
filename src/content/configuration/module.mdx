@@ -14,6 +14,7 @@ contributors:
   - EugeneHlushko
   - superburrito
   - lukasgeiter
+  - fokusferit
 ---
 
 These options determine how the [different types of modules](/concepts/modules) within a project will be treated.
@@ -217,7 +218,7 @@ Parsers may inspect these options and disable or reconfigure themselves accordin
 - Setting the option to `false` disables the parser.
 - Setting the option to `true` or leaving it `undefined` enables the parser.
 
-However, parser plugins may accept more than just a boolean. For example, the internal `NodeStuffPlugin` can accept an object instead of `true` to add additional options for a particular Rule.
+However, parser plugins may accept more than a boolean. For example, the internal `NodeStuffPlugin` can accept an object instead of `true` to add additional options for a particular Rule.
 
 __Examples__ (parser options by the default plugins):
 
@@ -236,7 +237,7 @@ module.exports = {
           requireInclude: false, // disable require.include
           requireEnsure: false, // disable require.ensure
           requireContext: false, // disable require.context
-          browserify: false, // disable special handling of Browserify bundles
+          browserify: false, // disable particular handling of Browserify bundles
           requireJs: false, // disable requirejs.*
           node: false, // disable __dirname, __filename, module, require.extensions, require.main, etc.
           node: {...} // reconfigure [node](/configuration/node) layer on module level

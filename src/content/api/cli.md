@@ -12,6 +12,7 @@ contributors:
   - byzyk
   - wizardofhogwarts
   - EslamHiko
+  - fokusferit
 related:
   - title: Analyzing Build Statistics
     url: https://survivejs.com/webpack/optimizing-build/analyzing-build-statistics/
@@ -25,7 +26,7 @@ related:
     url: https://medium.com/@nimgrg/analysing-and-minimising-the-size-of-client-side-bundle-with-webpack-and-source-map-explorer-41096559beca#.c3t2srr8x
 ---
 
-For proper usage and easy distribution of this configuration, webpack can be configured with `webpack.config.js`. Any parameters sent to the CLI will map to a corresponding parameter in the config file.
+For proper usage and useful distribution of this configuration, webpack can be configured with `webpack.config.js`. Any parameters sent to the CLI will map to a corresponding parameter in the config file.
 
 Read the [installation guide](/guides/installation) if you don't already have webpack and CLI installed.
 

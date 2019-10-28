@@ -20,7 +20,7 @@ contributors:
   - dhruvdutt
   - wizardofhogwarts
   - aholzner
-
+  - fokusferit
 related:
   - title: Concepts - Hot Module Replacement
     url: /concepts/hot-module-replacement
@@ -208,7 +208,7 @@ __index.js__
   }
 ```
 
-This is just one example, but there are many others that can easily trip people up. Luckily, there are a lot of loaders out there (some of which are mentioned below) that will make hot module replacement much easier.
+This is only one example, but there are many others that can trip people up. Luckily, there are a lot of loaders out there (some of which are mentioned below) that will make hot module replacement much easier.
 
 
 ## HMR with Stylesheets
@@ -261,7 +261,7 @@ __webpack.config.js__
   };
 ```
 
-Hot loading stylesheets is as easy as importing them into a module:
+Hot loading stylesheets is as intuitive as importing them into a module:
 
 __project__
 
@@ -339,7 +339,7 @@ There are many other loaders and examples out in the community to make HMR inter
 - [React Hot Loader](https://github.com/gaearon/react-hot-loader): Tweak react components in real time.
 - [Vue Loader](https://github.com/vuejs/vue-loader): This loader supports HMR for vue components out of the box.
 - [Elm Hot webpack Loader](https://github.com/klazuka/elm-hot-webpack-loader): Supports HMR for the Elm programming language.
-- [Angular HMR](https://github.com/gdi2290/angular-hmr): No loader necessary! A simple change to your main NgModule file is all that's required to have full control over the HMR APIs.
+- [Angular HMR](https://github.com/gdi2290/angular-hmr): No loader necessary! A change to your main NgModule file is all that's required to have full control over the HMR APIs.
 - [Svelte Loader](https://github.com/sveltejs/svelte-loader): This loader supports HMR for Svelte components out of the box.
 
 T> If you know of any other loaders or plugins that help with or enhance HMR, please submit a pull request to add them to this list!

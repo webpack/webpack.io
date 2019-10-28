@@ -4,6 +4,7 @@ sort: 1
 contributors:
   - pranshuchittora
   - EugeneHlushko
+  - fokusferit
 ---
 
 The following sections contain all you need to know about editing and formatting the content within this site. Make sure to do some research before starting your edits or additions. Sometimes the toughest part is finding where the content should live and determining whether or not it already exists.
@@ -154,12 +155,14 @@ Do not make assumptions when writing the documentation.
 + As we've learned in [production guide](/guides/production/)...
 ```
 
-Please do not assume things are simple. Avoid words like 'just', 'simply'.
+Please do not assume things are "simple", "easy" or "special". Avoid words like 'just', 'simply' or "basically".
 
 ```diff
 - Simply run command...
 + Run the `command-name` command...
 ```
+
+Also avoid words with can be considered insensitive like "disabled" or "special". Instead use for example "turned off" or "specific".
 
 ### Configuration defaults and types
 

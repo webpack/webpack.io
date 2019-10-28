@@ -41,7 +41,7 @@ __project__
 
 __tsconfig.json__
 
-Let's set up a simple configuration to support JSX and compile TypeScript down to ES5...
+Let's set up a configuration to support JSX and compile TypeScript down to ES5...
 
 ``` json
 {

@@ -17,6 +17,7 @@ contributors:
   - farskid
   - LukeMwila
   - Jalitha
+  - fokusferit
 ---
 
 At its core, __webpack__ is a _static module bundler_ for modern JavaScript applications. When webpack processes your application, it internally builds a [dependency graph](/concepts/dependency-graph/) which maps every module your project needs and generates one or more _bundles_.
@@ -39,8 +40,8 @@ This document is intended to give a __high-level__ overview of these concepts, w
 For a better understanding of the ideas behind module bundlers and how they work under the hood, consult these resources:
 
 - [Manually Bundling an Application](https://www.youtube.com/watch?v=UNMkLHzofQI)
-- [Live Coding a Simple Module Bundler](https://www.youtube.com/watch?v=Gc9-7PBqOC8)
-- [Detailed Explanation of a Simple Module Bundler](https://github.com/ronami/minipack)
+- [Live Coding a Basic Module Bundler](https://www.youtube.com/watch?v=Gc9-7PBqOC8)
+- [Detailed Explanation of a Basic Module Bundler](https://github.com/ronami/minipack)
 
 
 ## Entry

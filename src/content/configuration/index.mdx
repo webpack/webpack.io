@@ -14,6 +14,7 @@ contributors:
   - jeremenichelli
   - dasarianudeep
   - lukasgeiter
+  - fokusferit
 ---
 
 Out of the box, webpack won't require you to use a configuration file. However, it will assume the entry point of your project is `src/index` and will output the result in `dist/main.js` minified and optimized for production.
@@ -147,7 +148,7 @@ module.exports = {
       devtoolLineToLine: {
         test: /\\.jsx$/
       },
-      // use a simple 1:1 mapped SourceMaps for these modules (faster)
+      // use 1:1 mapped SourceMaps for these modules (faster)
       hotUpdateMainFilename: "[hash].hot-update.json", // string
       // filename template for HMR manifest
       hotUpdateChunkFilename: "[id].[hash].hot-update.js", // string

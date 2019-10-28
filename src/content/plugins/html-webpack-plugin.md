@@ -20,7 +20,7 @@ npm install --save-dev html-webpack-plugin
 ## Basic Usage
 
 The plugin will generate an HTML5 file for you that includes all your webpack
-bundles in the body using `script` tags. Just add the plugin to your webpack
+bundles in the body using `script` tags. Add the plugin to your webpack
 config as follows:
 
 ```javascript

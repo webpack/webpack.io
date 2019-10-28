@@ -16,6 +16,7 @@ contributors:
   - EugeneHlushko
   - AnayaDesign
   - torifat
+  - fokusferit
 related:
   - title: "webpack 4 beta — try it today!"
     url: https://medium.com/webpack/webpack-4-beta-try-it-today-6b1d27d7d7e2#9a67
@@ -133,7 +134,7 @@ Note the `unused harmony export square` comment above. If you look at the code b
 
 ## Mark the file as side-effect-free
 
-In a 100% ESM module world, identifying side effects is straightforward. However, we aren't there just yet, so in the mean time it's necessary to provide hints to webpack's compiler on the "pureness" of your code.
+In a 100% ESM module world, identifying side effects is straightforward. However, we aren't there yet, so in the mean time it's necessary to provide hints to webpack's compiler on the "pureness" of your code.
 
 The way this is accomplished is the `"sideEffects"` package.json property.
 
@@ -144,9 +145,9 @@ The way this is accomplished is the `"sideEffects"` package.json property.
 }
 ```
 
-All the code noted above does not contain side effects, so we can simply mark the property as `false` to inform webpack that it can safely prune unused exports.
+All the code noted above does not contain side effects, so we can mark the property as `false` to inform webpack that it can safely prune unused exports.
 
-T> A "side effect" is defined as code that performs a special behavior when imported, other than exposing one or more exports. An example of this are polyfills, which affect the global scope and usually do not provide an export.
+T> A "side effect" is defined as code that performs a custom behavior when imported, other than exposing one or more exports. An example of this are polyfills, which affect the global scope and usually do not provide an export.
 
 If your code did have some side effects though, an array can be provided instead:
 
@@ -238,9 +239,9 @@ export {
 
 When `Button` is unused you can effectively remove the `export { Button$1 };` which leaves all the remaining code. So the question is "Does this code have any side effects or can it be safely removed?". Difficult to say, especially because of this line `withAppProvider()(Button)`. `withAppProvider` is called and the return value is also called. Are there any side effects when calling `merge` or `hoistStatics`? Are there side effects when assigning `WithProvider.contextTypes` (Setter?) or when reading `WrappedComponent.contextTypes` (Getter?).
 
-Terser actually tries to figure it out, but it doesn't know for sure in many cases. This doesn't mean that terser is not doing its job well because it can't figure it out. It's just too difficult to determine it reliably in a dynamic language like JavaScript.
+Terser actually tries to figure it out, but it doesn't know for sure in many cases. This doesn't mean that terser is not doing its job well because it can't figure it out. It's too difficult to determine it reliably in a dynamic language like JavaScript.
 
-But we can help terser by using the `/*#__PURE__*/` annotation. It flags a statement as side effect free. So a simple change would make it possible to tree-shake the code:
+But we can help terser by using the `/*#__PURE__*/` annotation. It flags a statement as side effect free. The following change would make it possible to tree-shake the code:
 
 `var Button$1 = /*#__PURE__*/ withAppProvider()(Button);`
 
@@ -337,7 +338,7 @@ T> Note that the `--optimize-minimize` flag can be used to enable `TerserPlugin`
 
 With that squared away, we can run another `npm run build` and see if anything has changed.
 
-Notice anything different about `dist/bundle.js`? Clearly the whole bundle is now minified and mangled, but, if you look carefully, you won't see the `square` function included but will see a mangled version of the `cube` function (`function r(e){return e*e*e}n.a=r`). With minification and tree shaking, our bundle is now a few bytes smaller! While that may not seem like much in this contrived example, tree shaking can yield a significant decrease in bundle size when working on larger applications with complex dependency trees.
+Notice anything different about `dist/bundle.js`? The whole bundle is now minified and mangled, but, if you look carefully, you won't see the `square` function included but will see a mangled version of the `cube` function (`function r(e){return e*e*e}n.a=r`). With minification and tree shaking, our bundle is now a few bytes smaller! While that may not seem like much in this contrived example, tree shaking can yield a significant decrease in bundle size when working on larger applications with complex dependency trees.
 
 T> [ModuleConcatenationPlugin](/plugins/module-concatenation-plugin) is needed for the tree shaking to work. It is added by `mode: "production"`. If you are not using it, remember to add the [ModuleConcatenationPlugin](/plugins/module-concatenation-plugin) manually.
 

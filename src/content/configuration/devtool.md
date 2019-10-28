@@ -8,6 +8,7 @@ contributors:
   - lricoy
   - madhavarshney
   - wizardofhogwarts
+  - fokusferit
 related:
   - title: Enabling Source Maps
     url: https://survivejs.com/webpack/developing-with-webpack/enabling-sourcemaps/
@@ -82,7 +83,7 @@ The following options are ideal for development:
 
 ### Special cases
 
-The following options are not ideal for development nor production. They are needed for some special cases, i. e. for some 3rd party tools.
+The following options are not ideal for development nor production. They are needed for some specific cases, i. e. for some 3rd party tools.
 
 `inline-source-map` - A SourceMap is added as a DataUrl to the bundle.
 

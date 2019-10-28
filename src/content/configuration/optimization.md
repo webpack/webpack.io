@@ -8,6 +8,7 @@ contributors:
   - byzyk
   - madhavarshney
   - dhurlburtusa
+  - fokusferit
 related:
   - title: 'webpack 4: Code Splitting, chunk graph and the splitChunks optimization'
     url: https://medium.com/webpack/webpack-4-code-splitting-chunk-graph-and-the-splitchunks-optimization-be739a861366
@@ -180,7 +181,7 @@ module.exports = {
 
 `boolean = false`
 
-Tells webpack to use readable chunk identifiers for better debugging. This option is enabled by default for [mode](/configuration/mode/) `development` and disabled for [mode](/configuration/mode/) `production` if no option is provided in webpack config.
+Tells webpack to use readable chunk identifiers for better debugging. This option is enabled by default for [mode](/configuration/mode/) `development` and turned off for [mode](/configuration/mode/) `production` if no option is provided in webpack config.
 
 __webpack.config.js__
 
@@ -306,7 +307,7 @@ module.exports = {
 };
 ```
 
-W> `optimization.removeAvailableModules` reduces the performance of webpack, and will be disabled in `production` mode by default in next major release. Disable it in `production` mode if you want extra build performance.
+W> `optimization.removeAvailableModules` reduces the performance of webpack, and will be turned off in `production` mode by default in next major release. Disable it in `production` mode if you want extra build performance.
 
 ## `optimization.removeEmptyChunks`
 
@@ -346,7 +347,7 @@ module.exports = {
 
 `boolean`
 
-Tells webpack to determine and flag chunks which are subsets of other chunks in a way that subsets don’t have to be loaded when the bigger chunk has been already loaded. By default `optimization.flagIncludedChunks` is enabled in `production` [mode](/configuration/mode/) and disabled elsewise.
+Tells webpack to determine and flag chunks which are subsets of other chunks in a way that subsets don’t have to be loaded when the bigger chunk has been already loaded. By default `optimization.flagIncludedChunks` is enabled in `production` [mode](/configuration/mode/) and turned off elsewise.
 
 __webpack.config.js__
 
@@ -363,7 +364,7 @@ module.exports = {
 
 `boolean`
 
-Tells webpack to figure out an order of modules which will result in the smallest initial bundle. By default `optimization.occurrenceOrder` is enabled in `production` [mode](/configuration/mode/) and disabled elsewise.
+Tells webpack to figure out an order of modules which will result in the smallest initial bundle. By default `optimization.occurrenceOrder` is enabled in `production` [mode](/configuration/mode/) and turned off elsewise.
 
 __webpack.config.js__
 
@@ -399,7 +400,7 @@ module.exports = {
 
 Tells webpack to determine used exports for each module. This depends on [`optimization.providedExports`](#optimizationoccurrenceorder). Information collected by `optimization.usedExports` is used by other optimizations or code generation i.e. exports are not generated for unused exports, export names are mangled to single char identifiers when all usages are compatible.
 Dead code elimination in minimizers will benefit from this and can remove unused exports.
-By default `optimization.usedExports` is enabled in `production` [mode](/configuration/mode/) and disabled elsewise.
+By default `optimization.usedExports` is enabled in `production` [mode](/configuration/mode/) and turned off elsewise.
 
 __webpack.config.js__
 
@@ -417,7 +418,7 @@ module.exports = {
 `boolean`
 
 Tells webpack to find segments of the module graph which can be safely concatenated into a single module. Depends on [`optimization.providedExports`](#optimizationprovidedexports) and [`optimization.usedExports`](#optimizationusedexports).
-By default `optimization.concatenateModules` is enabled in `production` [mode](/configuration/mode/) and disabled elsewise.
+By default `optimization.concatenateModules` is enabled in `production` [mode](/configuration/mode/) and turned off elsewise.
 
 __webpack.config.js__
 
@@ -450,7 +451,7 @@ T> Please note that `sideEffects` should be in the npm module's `package.json` f
 
 `optimization.sideEffects` depends on [`optimization.providedExports`](#optimizationprovidedexports) to be enabled. This dependency has a build time cost, but eliminating modules has positive impact on performance because of less code generation. Effect of this optimization depends on your codebase, try it for possible performance wins.
 
-By default `optimization.sideEffects` is enabled in `production` [mode](/configuration/mode/) and disabled elsewise.
+By default `optimization.sideEffects` is enabled in `production` [mode](/configuration/mode/) and turned off elsewise.
 
 __webpack.config.js__
 
@@ -469,7 +470,7 @@ module.exports = {
 
 `optimization.portableRecords` tells webpack to generate records with relative paths to be able to move the context folder.
 
-By default `optimization.portableRecords` is disabled. Automatically enabled if at least one of the records options provided to webpack config: [`recordsPath`](/configuration/other-options/#recordspath), [`recordsInputPath`](/configuration/other-options/#recordsinputpath), [`recordsOutputPath`](/configuration/other-options/#recordsoutputpath).
+By default `optimization.portableRecords` is turned off. Automatically enabled if at least one of the records options provided to webpack config: [`recordsPath`](/configuration/other-options/#recordspath), [`recordsInputPath`](/configuration/other-options/#recordsinputpath), [`recordsOutputPath`](/configuration/other-options/#recordsoutputpath).
 
 __webpack.config.js__
 

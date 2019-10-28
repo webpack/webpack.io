@@ -6,6 +6,7 @@ contributors:
 - montogeek
 - jeremenichelli
 - EugeneHlushko
+- fokusferit
 ---
 
 To understand why you should use webpack, let's recap how we used JavaScript on the web before bundlers were a thing.
@@ -19,7 +20,7 @@ IIFEs solve scoping issues for large projects; when script files are wrapped by 
 
 The use of IIFEs led to tools like Make, Gulp, Grunt, Broccoli or Brunch. These tools are known as task runners, and they concatenate all your project files together.
 
-However, changing one file means you have to rebuild the whole thing. Concatenating makes it easy to reuse scripts across files but makes build optimizations more difficult. How can you find out if code is actually being used or not?
+However, changing one file means you have to rebuild the whole thing. Concatenating makes it possible to reuse scripts across files but makes build optimizations more difficult. How can you find out if code is actually being used or not?
 
 Even if you only use a single function from lodash, you have to add the entire library and then squish it together. How do you treeshake the dependencies on your code? Lazy loading chunks of code can be hard to do at scale and requires a lot of manual work from the developer.
 

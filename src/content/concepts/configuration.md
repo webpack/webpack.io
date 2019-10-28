@@ -6,6 +6,7 @@ contributors:
   - simon04
   - EugeneHlushko
   - byzyk
+  - fokusferit
 ---
 
 You may have noticed that few webpack configurations look exactly alike. This is because __webpack's configuration file is a JavaScript file that exports a webpack [configuration](/configuration/).__ This configuration is then processed by webpack based upon its defined properties.
@@ -30,7 +31,7 @@ T> The most important part to take away from this document is that there are man
 
 The examples below describe how webpack's configuration can be both expressive and configurable because _it is code_:
 
-## Simple Configuration
+## Basic Configuration
 
 __webpack.config.js__
 

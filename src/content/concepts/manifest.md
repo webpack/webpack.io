@@ -4,6 +4,7 @@ sort: 10
 contributors:
   - skipjack
   - EugeneHlushko
+  - fokusferit
 related:
   - title: Separating a Manifest
     url: https://survivejs.com/webpack/optimizing/separating-manifest/
@@ -24,7 +25,7 @@ This article will focus on the last of these three parts: the runtime and, in pa
 
 ## Runtime
 
-The runtime, along with the manifest data, is basically all the code webpack needs to connect your modularized application while it's running in the browser. It contains the loading and resolving logic needed to connect your modules as they interact. This includes connecting modules that have already been loaded into the browser as well as logic to lazy-load the ones that haven't.
+The runtime, along with the manifest data, is all the code webpack needs to connect your modularized application while it's running in the browser. It contains the loading and resolving logic needed to connect your modules as they interact. This includes connecting modules that have already been loaded into the browser as well as logic to lazy-load the ones that haven't.
 
 
 ## Manifest
@@ -36,7 +37,7 @@ As the compiler enters, resolves, and maps out your application, it keeps detail
 
 ## The Problem
 
-So now you have a little bit of insight about how webpack works behind the scenes. "But, how does this affect me?", you might ask. The simple answer is that most of the time it doesn't. The runtime will do its thing, utilizing the manifest, and everything will appear to just magically work once your application hits the browser. However, if you decide to improve the performance of your projects by utilizing browser caching, this process will all of a sudden become an important thing to understand.
+So now you have a little bit of insight about how webpack works behind the scenes. "But, how does this affect me?", you might ask. The answer is that most of the time it doesn't. The runtime will do its thing, utilizing the manifest, and everything will appear to magically work once your application hits the browser. However, if you decide to improve the performance of your projects by utilizing browser caching, this process will all of a sudden become an important thing to understand.
 
 By using content hashes within your bundle file names, you can indicate to the browser when the content of a file has changed, thus invalidating the cache. Once you start doing this though, you'll immediately notice some funny behavior. Certain hashes change even when their content apparently does not. This is caused by the injection of the runtime and manifest, which changes every build.
 

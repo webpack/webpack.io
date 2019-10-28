@@ -116,9 +116,9 @@ This syntax is used to describe all the possible ways that an external library c
 
 ### function
 
-It might be useful to define your own function to control the behavior of what you want to externalize from webpack. [webpack-node-externals](https://www.npmjs.com/package/webpack-node-externals), for example, excludes all modules from the `node_modules` directory and provides some options too, for example, whitelist packages.
+It might be useful to define your own function to control the behavior of what you want to externalize from webpack. [webpack-node-externals](https://www.npmjs.com/package/webpack-node-externals), for example, excludes all modules from the `node_modules` directory and provides some options too, for example, including certain defined packages.
 
-It basically comes down to this:
+It comes down to this:
 
 ```javascript
 module.exports = {

@@ -20,6 +20,7 @@ contributors:
   - AnayaDesign
   - wizardofhogwarts
   - aholzner
+  - fokusferit
 ---
 
 In this guide, we'll dive into some of the best practices and utilities for building a production site or application.
@@ -106,9 +107,9 @@ __webpack.prod.js__
 + });
 ```
 
-In `webpack.common.js`, we now have setup our `entry` and `output` configuration and we've included any plugins that are required for both environments. In `webpack.dev.js`, we've set ``mode`` to ``development``. Also, we've added the recommended `devtool` for that environment (strong source mapping), as well as our simple `devServer` configuration. Finally, in `webpack.prod.js`,``mode`` is set to ``production`` which loads `TerserPlugin` which was first introduced by the [tree shaking](/guides/tree-shaking) guide.
+In `webpack.common.js`, we now have setup our `entry` and `output` configuration and we've included any plugins that are required for both environments. In `webpack.dev.js`, we've set ``mode`` to ``development``. Also, we've added the recommended `devtool` for that environment (strong source mapping), as well as our basic `devServer` configuration. Finally, in `webpack.prod.js`,``mode`` is set to ``production`` which loads `TerserPlugin` which was first introduced by the [tree shaking](/guides/tree-shaking) guide.
 
-Note the use of `merge()` in the environment-specific configurations to easily include our common configuration in `dev` and `prod`. The `webpack-merge` tool offers a variety of advanced features for merging but for our use case we won't need any of that.
+Note the use of `merge()` in the environment-specific configurations to include our common configuration in `dev` and `prod`. The `webpack-merge` tool offers a variety of advanced features for merging but for our use case we won't need any of that.
 
 
 ## NPM Scripts
@@ -203,7 +204,7 @@ Note that while the [`TerserPlugin`](/plugins/terser-webpack-plugin) is a great 
 - [`BabelMinifyWebpackPlugin`](https://github.com/webpack-contrib/babel-minify-webpack-plugin)
 - [`ClosureWebpackPlugin`](https://github.com/webpack-contrib/closure-webpack-plugin)
 
-If you decide to try another minification plugin, just make sure your new choice also drops dead code as described in the [tree shaking](/guides/tree-shaking) guide and provide it as the [`optimization.minimizer`](/configuration/optimization/#optimizationminimizer).
+If you decide to try another minification plugin, make sure your new choice also drops dead code as described in the [tree shaking](/guides/tree-shaking) guide and provide it as the [`optimization.minimizer`](/configuration/optimization/#optimizationminimizer).
 
 
 ## Source Mapping
@@ -234,4 +235,4 @@ It is crucial to minimize your CSS for production. Please see the [Minimizing fo
 
 Some of what has been described above can also be achieved by using the command line. For example, the `--optimize-minimize` flag will include the `TerserPlugin` behind the scenes. The `--define process.env.NODE_ENV="'production'"` will do the same for the `DefinePlugin` instance described above. And, `webpack -p` will automatically invoke both those flags and thus the plugins to be included.
 
-While these shorthand methods are nice, we usually recommend just using the configuration as it's better to understand exactly what is being done for you in both cases. The configuration also gives you more control on fine-tuning other options within both plugins.
+While these shorthand methods are nice, we usually recommend using the configuration as it's better to understand exactly what is being done for you in both cases. The configuration also gives you more control on fine-tuning other options within both plugins.

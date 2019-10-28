@@ -13,6 +13,7 @@ contributors:
   - byzyk
   - trivikr
   - aholzner
+  - fokusferit
 ---
 
 T> This guide extends on code examples found in the [Output Management](/guides/output-management) guide.
@@ -52,7 +53,7 @@ __webpack.config.js__
 
 ## Using source maps
 
-When webpack bundles your source code, it can become difficult to track down errors and warnings to their original location. For example, if you bundle three source files (`a.js`, `b.js`, and `c.js`) into one bundle (`bundle.js`) and one of the source files contains an error, the stack trace will simply point to `bundle.js`. This isn't always helpful as you probably want to know exactly which source file the error came from.
+When webpack bundles your source code, it can become difficult to track down errors and warnings to their original location. For example, if you bundle three source files (`a.js`, `b.js`, and `c.js`) into one bundle (`bundle.js`) and one of the source files contains an error, the stack trace will point to `bundle.js`. This isn't always helpful as you probably want to know exactly which source file the error came from.
 
 In order to make it easier to track down errors and warnings, JavaScript offers [source maps](http://blog.teamtreehouse.com/introduction-source-maps), which map your compiled code back to your original source code. If an error originates from `b.js`, the source map will tell you exactly that.
 
@@ -189,7 +190,7 @@ The only downside is that you have to refresh your browser in order to see the c
 
 ### Using webpack-dev-server
 
-The `webpack-dev-server` provides you with a simple web server and the ability to use live reloading. Let's set it up:
+The `webpack-dev-server` provides you with a basic web server and the ability to use live reloading. Let's set it up:
 
 ``` bash
 npm install --save-dev webpack-dev-server
@@ -232,7 +233,7 @@ This tells `webpack-dev-server` to serve the files from the `dist` directory on 
 
 W> webpack-dev-server doesn't write any output files after compiling. Instead, it keeps bundle files in memory and serves them as if they were real files mounted at the server's root path. If your page expects to find the bundle files on a different path, you can change this with the [`publicPath`](/configuration/dev-server/#devserverpublicpath-) option in the dev server's configuration.
 
-Let's add a script to easily run the dev server as well:
+Let's add a script to quickly run the dev server as well:
 
 __package.json__
 
@@ -422,4 +423,4 @@ To disable this feature in some common editors, see the list below:
 
 ## Conclusion
 
-Now that you've learned how to automatically compile your code and run a simple development server, you can check out the next guide, which will cover [Hot Module Replacement](/guides/hot-module-replacement).
+Now that you've learned how to automatically compile your code and run a basic development server, you can check out the next guide, which will cover [Hot Module Replacement](/guides/hot-module-replacement).

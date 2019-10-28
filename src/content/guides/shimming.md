@@ -14,6 +14,7 @@ contributors:
   - plr108
   - NicolasLetellier
   - wizardofhogwarts
+  - fokusferit
 related:
   - title: Reward modern browser users script
     url: https://hackernoon.com/10-things-i-learned-making-the-fastest-site-in-the-world-18a0e1cdf4a7#c665
@@ -261,7 +262,7 @@ Now from within our entry script (i.e. `src/index.js`), we could `import { file,
 
 Almost everything we've discussed thus far has been in relation to handling legacy packages. Let's move on to our second topic: __polyfills__.
 
-There's a lot of ways to load polyfills. For example, to include the [`babel-polyfill`](https://babeljs.io/docs/en/babel-polyfill/) we might simply:
+There's a lot of ways to load polyfills. For example, to include the [`babel-polyfill`](https://babeljs.io/docs/en/babel-polyfill/) we need to:
 
 ``` bash
 npm install --save babel-polyfill
@@ -285,7 +286,7 @@ __src/index.js__
   document.body.appendChild(component());
 ```
 
-T> Note that we aren't binding the `import` to a variable. This is because polyfills simply run on their own, prior to the rest of the code base, allowing us to then assume certain native functionality exists.
+T> Note that we aren't binding the `import` to a variable. This is because polyfills can run on their own, prior to the rest of the code base, allowing us to then assume certain native functionality exists.
 
 Note that this approach prioritizes correctness over bundle size. To be safe and robust, polyfills/shims must run __before all other code__, and thus either need to load synchronously, or, all app code needs to load after all polyfills/shims load.
 There are many misconceptions in the community, as well, that modern browsers "don't need" polyfills, or that polyfills/shims merely serve to add missing features - in fact, they often _repair broken implementations_, even in the most modern of browsers.
@@ -372,7 +373,7 @@ __webpack.config.js__
   };
 ```
 
-With that in place, we can add the logic to conditionally load our new `polyfills.bundle.js` file. How you make this decision depends on the technologies and browsers you need to support. We'll just do some simple testing to determine whether our polyfills are needed:
+With that in place, we can add the logic to conditionally load our new `polyfills.bundle.js` file. How you make this decision depends on the technologies and browsers you need to support. We'll do some testing to determine whether our polyfills are needed:
 
 __dist/index.html__
 
@@ -446,7 +447,7 @@ See [the babel-preset-env documentation](https://babeljs.io/docs/en/babel-preset
 
 ## Node Built-Ins
 
-Node built-ins, like `process`, can be polyfilled right directly from your configuration file without the use of any special loaders or plugins. See the [node configuration page](/configuration/node) for more information and examples.
+Node built-ins, like `process`, can be polyfilled right directly from your configuration file without the use of any additional loaders or plugins. See the [node configuration page](/configuration/node) for more information and examples.
 
 
 ## Other Utilities

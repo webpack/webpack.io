@@ -7,9 +7,10 @@ contributors:
   - rhys-vdw
   - EugeneHlushko
   - hemal7735
+  - fokusferit
 ---
 
-webpack enables use of [loaders](/concepts/loaders) to preprocess files. This allows you to bundle any static resource way beyond JavaScript. You can easily write your own loaders using Node.js.
+webpack enables use of [loaders](/concepts/loaders) to preprocess files. This allows you to bundle any static resource way beyond JavaScript. You can write your own loaders using Node.js.
 
 Loaders are activated by using `loadername!` prefixes in `require()` statements, or are automatically applied via regex from your webpack configuration – see [configuration](/concepts/loaders/#configuration).
 

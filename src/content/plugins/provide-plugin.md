@@ -6,6 +6,7 @@ contributors:
   - re-fort
   - byzyk
   - seckin92
+  - fokusferit
 ---
 
 Automatically load modules instead of having to `import` or `require` them everywhere.
@@ -43,7 +44,7 @@ For importing the default export of an ES2015 module, you have to specify the de
 
 ## Usage: jQuery
 
-To automatically load `jquery` we can simply point both variables it exposes to the corresponding node module:
+To automatically load `jquery` we can point both variables it exposes to the corresponding node module:
 
 ```javascript
 new webpack.ProvidePlugin({

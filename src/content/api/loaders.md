@@ -11,9 +11,10 @@ contributors:
   - jantimon
   - superburrito
   - wizardofhogwarts
+  - fokusferit
 ---
 
-A loader is just a JavaScript module that exports a function. The [loader runner](https://github.com/webpack/loader-runner) calls this function and passes the result of the previous loader or the resource file into it. The `this` context of the function is filled-in by webpack and the [loader runner](https://github.com/webpack/loader-runner) with some useful methods that allow the loader (among other things) to change its invocation style to async, or get query parameters.
+A loader is a JavaScript module that exports a function. The [loader runner](https://github.com/webpack/loader-runner) calls this function and passes the result of the previous loader or the resource file into it. The `this` context of the function is filled-in by webpack and the [loader runner](https://github.com/webpack/loader-runner) with some useful methods that allow the loader (among other things) to change its invocation style to async, or get query parameters.
 
 The first loader is passed one argument: the content of the resource file. The compiler expects a result from the last loader. The result should be a `String` or a `Buffer` (which is converted to a string), representing the JavaScript source code of the module. An optional SourceMap result (as a JSON object) may also be passed.
 
@@ -36,7 +37,7 @@ module.exports = function(content, map, meta) {
 };
 ```
 
-The `this.callback` method is more flexible as it allows multiple arguments to be passed as opposed to just the `content`.
+The `this.callback` method is more flexible as you pass multiple arguments instead of using `content` only.
 
 __sync-loader-with-multiple-results.js__
 
@@ -99,7 +100,7 @@ module.exports.raw = true;
 
 Loaders are __always__ called from right to left. There are some instances where the loader only cares about the __metadata__ behind a request and can ignore the results of the previous loader. The `pitch` method on loaders is called from __left to right__ before the loaders are actually executed (from right to left).
 
-T> Loaders may be added inline in requests and disabled via inline prefixes, which will impact the order in which they are "pitched" and executed. See [`Rule.enforce`](/configuration/module#ruleenforce) for more details.
+T> Loaders may be added inline in requests and turned off via inline prefixes, which will impact the order in which they are "pitched" and executed. See [`Rule.enforce`](/configuration/module#ruleenforce) for more details.
 
 For the following configuration of [`use`](/configuration/module#ruleuse):
 
@@ -650,4 +651,4 @@ Logging API is available since the release of webpack 4.37. When `logging` is en
 
 - Loaders should prefer to use `this.getLogger()` for logging which is a shortcut to `compilation.getLogger()` with loader path and processed file. This kind of logging is stored to the Stats and formatted accordingly. It can be filtered and exported by the webpack user.
 - Loaders may use `this.getLogger('name')` to get an independent logger with a child name. Loader path and processed file is still added.
-- Loaders may use special fallback logic for detecting logging support `this.getLogger() ? this.getLogger() : console` to provide a fallback when an older webpack version is used which does not support `getLogger` method.
+- Loaders may use specific fallback logic for detecting logging support `this.getLogger() ? this.getLogger() : console` to provide a fallback when an older webpack version is used which does not support `getLogger` method.

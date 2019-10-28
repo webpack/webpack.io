@@ -40,7 +40,7 @@ module.exports = {
 
 `object`
 
-Create aliases to `import` or `require` certain modules more easily. For example, to alias a bunch of commonly used `src/` folders:
+Create aliases to `import` or `require` certain modules with less effort. For example, to alias a bunch of commonly used `src/` folders:
 
 __webpack.config.js__
 
@@ -446,7 +446,7 @@ T> Note that you can use alias here and other features familiar from resolve. Fo
 
 W> Removed in webpack 5
 
-The extensions/suffixes that are used when resolving loaders. Since version two, we [strongly recommend](/migrate/3/#automatic--loader-module-name-extension-removed) using the full name, e.g. `example-loader`, as much as possible for clarity. However, if you really wanted to exclude the `-loader` bit, i.e. just use `example`, you can use this option to do so:
+The extensions/suffixes that are used when resolving loaders. Since version two, we [strongly recommend](/migrate/3/#automatic--loader-module-name-extension-removed) using the full name, e.g. `example-loader`, as much as possible for clarity. However, if you really wanted to exclude the `-loader` bit, i.e. to use `example`, you can use this option to do so:
 
 __webpack.config.js__
 
