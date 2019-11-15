@@ -726,7 +726,7 @@ For `assetsSort`, `chunksSort` and `modulesSort` there are several possible fiel
 
 ### Extending stats behaviours
 
-If you want to use one of the pre-defined behaviours e.g. `'minimal'` but still override one or more of the rules, see [the source code](https://github.com/webpack/webpack/blob/master/lib/Stats.js#L1394-L1401). You would want to copy the configuration options from `case 'minimal': ...` and add your additional rules while providing an object to `stats`.
+If you want to use one of the pre-defined behaviours e.g. `'minimal'` but still override one or more of the rules, see [the source code](https://github.com/webpack/webpack/blob/master/lib/Stats.js#L1618-L1626). You would want to copy the configuration options from `case 'minimal': ...` and add your additional rules while providing an object to `stats`.
 
 __webpack.config.js__
 
