@@ -10,8 +10,6 @@ contributors:
   - jacobangel
   - madhavarshney
   - sakhisheikh
-  - superburrito
-  - ryandrew14
 related:
   - title: webpack's automatic deduplication algorithm example
     url: https://github.com/webpack/webpack/blob/master/examples/many-pages/README.md
@@ -577,7 +575,7 @@ W> This might result in a large chunk containing all external packages. It is re
 
 ### Split Chunks: Example 3
 
- Create a `custom vendor` chunk, which contains certain `node_modules` packages matched by `RegExp`.
+ Create a `custom vendors` chunk, which includes only those `node_modules` from the whole application which passes the RegEx Test
 
  __webpack.config.js__
 
@@ -598,4 +596,4 @@ module.exports = {
 };
 ```
 
-T> This will result in splitting `react` and `react-dom` into a separate chunk. If you're not sure what packages have been included in a chunk you may refer to [Bundle Analysis](/guides/code-splitting/#bundle-analysis) section for details.
+ T> This will result into a vendor chunk containing desired libraries provided in RegEx patter. A better understanding of chunks can be visualized by  [webpack-visualizer](https://chrisbateman.github.io/webpack-visualizer/).
