@@ -29,6 +29,7 @@ contributors:
   - AnayaDesign
   - wizardofhogwarts
   - maximilianschmelzer 
+  - niravasher
 related:
   - title: <link rel=”prefetch/preload”> in webpack
     url: https://medium.com/webpack/link-rel-prefetch-preload-in-webpack-51a52358f84c
@@ -77,6 +78,7 @@ console.log(
 ```
 
 __webpack.config.js__
+ __
 
 ``` diff
 const path = require('path');
@@ -253,7 +255,7 @@ Entrypoint index = index.bundle.js
 ...
 ```
 
-As `import()` returns a promise, it can be used with [`async` functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function). However, this requires using a pre-processor like Babel and the [Syntax Dynamic Import Babel Plugin](https://babeljs.io/docs/plugins/syntax-dynamic-import/#installation). Here's how it would simplify the code:
+As `import()` returns a promise, it can be used with [`async` functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function). However, this requires using a pre-processor like Babel and the [Syntax Dynamic Import Babel Plugin](https://babeljs.io/docs/plugins/syntax-dynamic-import/#installation). For `async await` `babel-polyfill` is required. Common usage can be found [here] (https://babeljs.io/docs/en/babel-polyfill/). Or in case you are using mutiple entries.
 
 __src/index.js__
 
