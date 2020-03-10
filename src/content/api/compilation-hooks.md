@@ -8,6 +8,7 @@ contributors:
   - misterdev
   - wizardofhogwarts
   - EugeneHlushko
+  - anikethsaha
 ---
 
 The `Compilation` module is used by the `Compiler` to create new compilations
@@ -20,13 +21,14 @@ hashed and restored.
 The `Compilation` class also extends `Tapable` and provides the following
 lifecycle hooks. They can be tapped the same way as compiler hooks:
 
-``` js
+```js
 compilation.hooks.someHook.tap(/* ... */);
 ```
 
 As with the `compiler`, `tapAsync` and `tapPromise` may also be available
 depending on the type of hook.
 
+W> Since webpack 5, `hooks` are no longer extendable. Use a `WeakMap` to add custom hooks.
 
 ### `buildModule`
 
@@ -36,15 +38,14 @@ Triggered before a module build has started, can be used to modify the module.
 
 - Callback Parameters: `module`
 
-
 ```js
-compilation.hooks.buildModule.tap('SourceMapDevToolModuleOptionsPlugin',
+compilation.hooks.buildModule.tap(
+  'SourceMapDevToolModuleOptionsPlugin',
   module => {
     module.useSourceMap = true;
   }
 );
 ```
-
 
 ### `rebuildModule`
 
@@ -54,7 +55,6 @@ Fired before rebuilding a module.
 
 - Callback Parameters: `module`
 
-
 ### `failedModule`
 
 `SyncHook`
@@ -62,7 +62,6 @@ Fired before rebuilding a module.
 Run when a module build has failed.
 
 - Callback Parameters: `module` `error`
-
 
 ### `succeedModule`
 
@@ -72,7 +71,6 @@ Executed when a module has been built successfully.
 
 - Callback Parameters: `module`
 
-
 ### `finishModules`
 
 `AsyncSeriesHook`
@@ -80,7 +78,6 @@ Executed when a module has been built successfully.
 Called when all modules have been built without errors.
 
 - Callback Parameters: `modules`
-
 
 ### `finishRebuildingModule`
 
@@ -90,20 +87,17 @@ Executed when a module has been rebuilt, in case of both success or with errors.
 
 - Callback Parameters: `module`
 
-
 ### `seal`
 
 `SyncHook`
 
 Fired when the compilation stops accepting new modules.
 
-
 ### `unseal`
 
 `SyncHook`
 
 Fired when a compilation begins accepting new modules.
-
 
 ### `optimizeDependenciesBasic`
 
@@ -113,7 +107,6 @@ W> This hook will be removed in v5.0.0
 
 Parameters: `modules`
 
-
 ### `optimizeDependencies`
 
 `SyncBailHook`
@@ -121,7 +114,6 @@ Parameters: `modules`
 Fired at the beginning of dependency optimization.
 
 - Callback Parameters: `modules`
-
 
 ### `optimizeDependenciesAdvanced`
 
@@ -131,7 +123,6 @@ W> This hook will be removed in v5.0.0
 
 - Callback Parameters: `modules`
 
-
 ### `afterOptimizeDependencies`
 
 `SyncHook`
@@ -140,13 +131,11 @@ Fired after the dependency optimization.
 
 - Callback Parameters: `modules`
 
-
 ### `optimize`
 
 `SyncHook`
 
 Triggered at the beginning of the optimization phase.
-
 
 ### `optimizeModulesBasic`
 
@@ -156,7 +145,6 @@ W> This hook will be removed in v5.0.0
 
 - Callback Parameters: `modules`
 
-
 ### `optimizeModules`
 
 `SyncBailHook`
@@ -164,7 +152,6 @@ W> This hook will be removed in v5.0.0
 Called at the beginning of the module optimization phase. A plugin can tap into this hook to perform optimizations on modules.
 
 - Callback Parameters: `modules`
-
 
 ### `optimizeModulesAdvanced`
 
@@ -174,7 +161,6 @@ W> This hook will be removed in v5.0.0
 
 - Callback Parameters: `modules`
 
-
 ### `afterOptimizeModules`
 
 `SyncHook`
@@ -182,7 +168,6 @@ W> This hook will be removed in v5.0.0
 Called after modules optimization has completed.
 
 - Callback Parameters: `modules`
-
 
 ### `optimizeChunksBasic`
 
@@ -192,7 +177,6 @@ W> This hook will be removed in v5.0.0
 
 - Callback Parameters: `chunks`
 
-
 ### `optimizeChunks`
 
 `SyncBailHook`
@@ -200,7 +184,6 @@ W> This hook will be removed in v5.0.0
 Called at the beginning of the chunk optimization phase. A plugin can tap into this hook to perform optimizations on chunks.
 
 - Callback Parameters: `chunks`
-
 
 ### `optimizeChunksAdvanced`
 
@@ -210,7 +193,6 @@ W> This hook will be removed in v5.0.0
 
 - Callback Parameters: `chunks`
 
-
 ### `afterOptimizeChunks`
 
 `SyncHook`
@@ -218,7 +200,6 @@ W> This hook will be removed in v5.0.0
 Fired after chunk optimization has completed.
 
 - Callback Parameters: `chunks`
-
 
 ### `optimizeTree`
 
@@ -228,7 +209,6 @@ Called before optimizing the dependency tree. A plugin can tap into this hook to
 
 - Callback Parameters: `chunks` `modules`
 
-
 ### `afterOptimizeTree`
 
 `SyncHook`
@@ -236,7 +216,6 @@ Called before optimizing the dependency tree. A plugin can tap into this hook to
 Called after the dependency tree optimization has completed with success.
 
 - Callback Parameters: `chunks` `modules`
-
 
 ### `optimizeChunkModulesBasic`
 
@@ -246,7 +225,6 @@ W> This hook will be removed in v5.0.0
 
 - Callback Parameters: `chunks` `modules`
 
-
 ### `optimizeChunkModules`
 
 `SyncBailHook`
@@ -254,7 +232,6 @@ W> This hook will be removed in v5.0.0
 Called after the tree optimization, at the beginning of the chunk modules optimization. A plugin can tap into this hook to perform optimizations of chunk modules.
 
 - Callback Parameters: `chunks` `modules`
-
 
 ### `optimizeChunkModulesAdvanced`
 
@@ -264,7 +241,6 @@ W> This hook will be removed in v5.0.0
 
 - Callback Parameters: `chunks` `modules`
 
-
 ### `afterOptimizeChunkModules`
 
 `SyncHook`
@@ -273,13 +249,11 @@ Called after the chunkmodules optimization has completed successfully.
 
 - Callback Parameters: `chunks` `modules`
 
-
 ### `shouldRecord`
 
 `SyncBailHook`
 
 Called to determine whether or not to store records. Returning anything `!== false` will prevent every other "record" hook from being executed ([`record`](#record), [`recordModules`](#recordmodules), [`recordChunks`](#recordchunks) and [`recordHash`](#recordhash)).
-
 
 ### `reviveModules`
 
@@ -288,7 +262,6 @@ Called to determine whether or not to store records. Returning anything `!== fal
 Restore module information from records.
 
 - Callback Parameters: `modules` `records`
-
 
 ### `optimizeModuleOrder`
 
@@ -300,7 +273,6 @@ Sort the modules from most to least important.
 
 - Callback Parameters: `modules`
 
-
 ### `advancedOptimizeModuleOrder`
 
 `SyncHook`
@@ -308,7 +280,6 @@ Sort the modules from most to least important.
 W> This hook will be removed in v5.0.0
 
 - Callback Parameters: `modules`
-
 
 ### `beforeModuleIds`
 
@@ -318,7 +289,6 @@ Executed before assigning an `id` to each module.
 
 - Callback Parameters: `modules`
 
-
 ### `moduleIds`
 
 `SyncHook`
@@ -326,7 +296,6 @@ Executed before assigning an `id` to each module.
 Called to assign an `id` to each module.
 
 - Callback Parameters: `modules`
-
 
 ### `optimizeModuleIds`
 
@@ -336,7 +305,6 @@ Called at the beginning of the modules `id` optimization.
 
 - Callback Parameters: `modules`
 
-
 ### `afterOptimizeModuleIds`
 
 `SyncHook`
@@ -345,7 +313,6 @@ Called when the modules `id` optimization phase has completed.
 
 - Callback Parameters: `modules`
 
-
 ### `reviveChunks`
 
 `SyncHook`
@@ -353,7 +320,6 @@ Called when the modules `id` optimization phase has completed.
 Restore chunk information from records.
 
 - Callback Parameters: `chunks` `records`
-
 
 ### `optimizeChunkOrder`
 
@@ -365,7 +331,6 @@ Sort the chunks in from most to least important.
 
 - Callback Parameters: `chunks`
 
-
 ### `beforeChunkIds`
 
 `SyncHook`
@@ -373,7 +338,6 @@ Sort the chunks in from most to least important.
 Executed before assigning an `id` to each chunk.
 
 - Callback Parameters: `chunks`
-
 
 ### `chunkIds`
 
@@ -385,7 +349,6 @@ Called to assign an `id` to each chunk.
 
 - Callback Parameters: `modules`
 
-
 ### `beforeOptimizeChunkIds`
 
 `SyncHook`
@@ -396,7 +359,6 @@ Fired before chunks `id` optimization.
 
 - Callback Parameters: `chunks`
 
-
 ### `optimizeChunkIds`
 
 `SyncHook`
@@ -404,7 +366,6 @@ Fired before chunks `id` optimization.
 Called at the beginning of the chunks `id` optimization phase.
 
 - Callback Parameters: `chunks`
-
 
 ### `afterOptimizeChunkIds`
 
@@ -414,7 +375,6 @@ Triggered after chunk `id` optimization has finished.
 
 - Callback Parameters: `chunks`
 
-
 ### `recordModules`
 
 `SyncHook`
@@ -422,7 +382,6 @@ Triggered after chunk `id` optimization has finished.
 Store module info to the records. This is triggered if [`shouldRecord`](#shouldrecord) returns a truthy value.
 
 - Callback Parameters: `modules` `records`
-
 
 ### `recordChunks`
 
@@ -432,7 +391,6 @@ Store chunk info to the records. This is only triggered if [`shouldRecord`](#sho
 
 - Callback Parameters: `chunks` `records`
 
-
 ### `optimizeCodeGeneration`
 
 T> This hook will be available in v5.0.0
@@ -441,20 +399,17 @@ A plugin can tap into this hook to optimize the generated code.
 
 - Callback Parameters: `modules`
 
-
 ### `beforeModuleHash`
 
 T> This hook will be available in v5.0.0
 
 Called before hashing modules.
 
-
 ### `afterModuleHash`
 
 T> This hook will be available in v5.0.0
 
 Called after hashing modules.
-
 
 ### `beforeRuntimeRequirements`
 
@@ -464,13 +419,11 @@ Called before processing the modules required at runtime.
 
 - Callback Parameters: `entrypoints`
 
-
 ### `afterRuntimeRequirements`
 
 T> This hook will be available in v5.0.0
 
 Called after processing the runtime requirements.
-
 
 ### `beforeHash`
 
@@ -478,13 +431,11 @@ Called after processing the runtime requirements.
 
 Called before the compilation is hashed.
 
-
 ### `afterHash`
 
 `SyncHook`
 
 Called after the compilation is hashed.
-
 
 ### `recordHash`
 
@@ -494,7 +445,6 @@ Store information about record hash to the `records`. This is only triggered if 
 
 - Callback Parameters: `records`
 
-
 ### `record`
 
 `SyncHook`
@@ -503,13 +453,11 @@ Store information about the `compilation` to the `records`. This is only trigger
 
 - Callback Parameters: `compilation` `records`
 
-
 ### `beforeModuleAssets`
 
 `SyncHook`
 
 Executed before module assets creation.
-
 
 ### `additionalChunkAssets`
 
@@ -519,21 +467,17 @@ Create additional assets for the chunks.
 
 - Callback Parameters: `chunks`
 
-
 ### `shouldGenerateChunkAssets`
 
 `SyncBailHook`
 
 Called to determine whether or not generate chunks assets. Returning anything `!== false` will allow chunk assets generation.
 
-
 ### `beforeChunkAssets`
 
 `SyncHook`
 
 Executed before creating the chunks assets.
-
-
 
 ### `additionalAssets`
 
@@ -542,14 +486,16 @@ Executed before creating the chunks assets.
 Create additional assets for the compilation. This hook can be used to download
 an image, for example:
 
-``` js
+```js
 compilation.hooks.additionalAssets.tapAsync('MyPlugin', callback => {
   download('https://img.shields.io/npm/v/webpack.svg', function(resp) {
-    if(resp.status === 200) {
+    if (resp.status === 200) {
       compilation.assets['webpack-version.svg'] = toAsset(resp);
       callback();
     } else {
-      callback(new Error('[webpack-example-plugin] Unable to download the image'));
+      callback(
+        new Error('[webpack-example-plugin] Unable to download the image')
+      );
     }
   });
 });
@@ -567,14 +513,14 @@ Any additional chunk assets are stored in `compilation.additionalChunkAssets`.
 
 Here's an example that simply adds a banner to each chunk.
 
-``` js
-compilation.hooks
-  .optimizeChunkAssets
-  .tapAsync('MyPlugin', (chunks, callback) => {
+```js
+compilation.hooks.optimizeChunkAssets.tapAsync(
+  'MyPlugin',
+  (chunks, callback) => {
     chunks.forEach(chunk => {
       chunk.files.forEach(file => {
         compilation.assets[file] = new ConcatSource(
-          '\/**Sweet Banner**\/',
+          '/__Sweet Banner__/',
           '\n',
           compilation.assets[file]
         );
@@ -582,9 +528,9 @@ compilation.hooks
     });
 
     callback();
-  });
+  }
+);
 ```
-
 
 ### `afterOptimizeChunkAssets`
 
@@ -596,7 +542,7 @@ The chunk assets have been optimized.
 
 Here's an example plugin from [@boopathi](https://github.com/boopathi) that outputs exactly what went into each chunk.
 
-``` js
+```js
 compilation.hooks.afterOptimizeChunkAssets.tap('MyPlugin', chunks => {
   chunks.forEach(chunk => {
     console.log({
@@ -608,8 +554,6 @@ compilation.hooks.afterOptimizeChunkAssets.tap('MyPlugin', chunks => {
 });
 ```
 
-
-
 ### `optimizeAssets`
 
 `AsyncSeriesHook`
@@ -617,7 +561,6 @@ compilation.hooks.afterOptimizeChunkAssets.tap('MyPlugin', chunks => {
 Optimize all assets stored in `compilation.assets`.
 
 - Callback Parameters: `assets`
-
 
 ### `afterOptimizeAssets`
 
@@ -627,20 +570,17 @@ The assets have been optimized.
 
 - Callback Parameters: `assets`
 
-
 ### `needAdditionalSeal`
 
 `SyncBailHook`
 
 Called to determine if the compilation needs to be unsealed to include other files.
 
-
 ### `afterSeal`
 
 `AsyncSeriesHook`
 
 Executed right after `needAdditionalSeal`.
-
 
 ### `chunkHash`
 
@@ -650,7 +590,6 @@ Triggered to emit the hash for each chunk.
 
 - Callback Parameters: `chunk` `chunkHash`
 
-
 ### `moduleAsset`
 
 `SyncHook`
@@ -658,7 +597,6 @@ Triggered to emit the hash for each chunk.
 Called when an asset from a module was added to the compilation.
 
 - Callback Parameters: `module` `filename`
-
 
 ### `chunkAsset`
 
@@ -668,7 +606,6 @@ Triggered when an asset from a chunk was added to the compilation.
 
 - Callback Parameters: `chunk` `filename`
 
-
 ### `assetPath`
 
 `SyncWaterfallHook`
@@ -677,13 +614,11 @@ Called to determine the path of an asset.
 
 - Callback Parameters: `path` `options`
 
-
 ### `needAdditionalPass`
 
 `SyncBailHook`
 
 Called to determine if an asset needs to be processed further after being emitted.
-
 
 ### `childCompiler`
 
@@ -692,7 +627,6 @@ Called to determine if an asset needs to be processed further after being emitte
 Executed after setting up a child compiler.
 
 - Callback Parameters: `childCompiler` `compilerName` `compilerIndex`
-
 
 ### `normalModuleLoader`
 

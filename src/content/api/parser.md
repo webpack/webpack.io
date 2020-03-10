@@ -7,6 +7,7 @@ contributors:
   - DeTeam
   - misterdev
   - EugeneHlushko
+  - anikethsaha
 ---
 
 The `parser` instance, found in the `compiler`, is used to parse each module
@@ -34,6 +35,7 @@ depending on the type of hook.
 The following lifecycle hooks are exposed by the `parser` and can be accessed
 as such:
 
+W> Since webpack 5, `hooks` are no longer extendable. Use a `WeakMap` to add custom hooks.
 
 ### evaluateTypeof
 
