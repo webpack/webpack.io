@@ -707,3 +707,52 @@ This hook allows changing the references reported by dependencies.
 - Callback Parameters: `depRef` `dependency` `module`
 
 W> The `module` parameter will be removed in v5.0.0
+
+### `statsPreset`
+
+`HookMap`
+
+It's a HookMap called for a preset (if used) with an options object. A plugin which handles a preset should set options in the options object. It should avoid overriding existing options.
+
+- Callback Parameters: `options` `context`
+
+Here's an example plugin.
+
+``` js
+compilation.hooks.statsPreset.for('my-preset').tap('MyPlugin', options => {
+  if(options.all === undefined) options.all = true;
+});
+```
+
+### `statsNormalize`
+
+`SyncHook`
+
+It's called for an options object and should normalize to a format usable by the following hooks. It should also normalize missing options to the default value.
+
+- Callback Parameters: `options` `context`
+
+Here's an example plugin.
+
+``` js
+compilation.hooks.statsNormalize.tap('MyPlugin', options => {
+  if(options.myOption === undefined) options.myOption = [];
+  if(!Array.isArray(options.myOption)) options.myOptions = [options.myOptions];
+});
+```
+
+### `StatsFactory`
+
+`SyncHook`
+
+Gives access to the StatsFactory for specific options.
+
+- Callback Parameters: `statsFactory` `options`
+
+### `statsPrinter`
+
+`SyncHook`
+
+Gives access to the StatsFactory for specific options.
+
+- Callback Parameters: `statsPrinter` `options`
