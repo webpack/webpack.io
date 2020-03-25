@@ -476,6 +476,8 @@ Execute some code fragment like a module. See [this comment](https://github.com/
 
 ### `this.resolveSync`
 
+W> The `resolveSync` function has been removed in webpack 4.
+
 ``` typescript
 resolveSync(context: string, request: string) -> string
 ```
