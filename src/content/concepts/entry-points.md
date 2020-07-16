@@ -8,6 +8,7 @@ contributors:
   - sokra
   - EugeneHlushko
   - Zearin
+  - opl-
 ---
 
 As mentioned in [Getting Started](/guides/getting-started/#using-a-configuration), there are multiple ways to define the `entry` property in your webpack configuration. We will show you the ways you __can__ configure the `entry` property, in addition to explaining why it may be useful to you.
@@ -37,8 +38,6 @@ module.exports = {
 };
 ```
 
-T> __What happens when you pass an array to `entry`?__ Passing an array of file paths to the `entry` property creates what is known as a __"multi-main entry"__. This is useful when you would like to inject multiple dependent files together and graph their dependencies into one "chunk".
-
 This is a great choice when you are looking to quickly setup a webpack configuration for an application or tool with one entry point (i.e. a library). However, there is not much flexibility in extending or scaling your configuration with this syntax.
 
 
@@ -60,6 +59,26 @@ module.exports = {
 The object syntax is more verbose. However, this is the most scalable way of defining entry/entries in your application.
 
 T> __"Scalable webpack configurations"__ are ones that can be reused and combined with other partial configurations. This is a popular technique used to separate concerns by environment, build target, and runtime. They are then merged using specialized tools like [webpack-merge](https://github.com/survivejs/webpack-merge).
+
+
+## Array Syntax
+
+Usage: `entry: [string] | {[string entryChunkName]: [string]}`
+
+Passing an array of file paths to the `entry` property creates what is known as a __"multi-main entry"__. This is useful when you would like to inject multiple dependent files together and graph their dependencies into one "chunk". The entry point will depend on and load each of the specified modules, but only the export value of the last module will be exported by the entry point.
+
+__webpack.config.js__
+
+```javascript
+module.exports = {
+  entry: [
+    'source-map-support/register',
+    './src/app.ts'
+  ]
+};
+```
+
+__What does this do?__ This config tells webpack that the `main` entry point should require both the `source-map-support/register` module and our app's entry point, then expose the value exported by our app (since it's the last file listed in the array).
 
 
 ## Scenarios
