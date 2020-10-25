@@ -20,6 +20,7 @@ contributors:
   - g100g
   - anikethsaha
   - snitin315
+  - hiroppy
 ---
 
 [webpack-dev-server](https://github.com/webpack/webpack-dev-server) can be used to quickly develop an application. See the [development guide](/guides/development/) to get started.
@@ -352,35 +353,6 @@ Usage via the CLI
 ```bash
 webpack-dev-server --disable-host-check
 ```
-
-
-## `devServer.filename` 🔑
-
-`string`
-
-This option lets you reduce the compilations in [lazy mode](#devserverlazy-).
-By default in [lazy mode](#devserverlazy-), every request results in a new compilation. With `filename`, it's possible to only compile when a certain file is requested.
-
-If [`output.filename`](/configuration/output/#outputfilename) is set to `'bundle.js'` and `devServer.filename` is used like this:
-
-__webpack.config.js__
-
-```javascript
-module.exports = {
-  //...
-  output: {
-    filename: 'bundle.js'
-  },
-  devServer: {
-    lazy: true,
-    filename: 'bundle.js'
-  }
-};
-```
-
-It will now only compile the bundle when `/bundle.js` is requested.
-
-T> `filename` has no effect when used without [lazy mode](#devserverlazy-).
 
 
 ## `devServer.headers` 🔑
@@ -723,33 +695,6 @@ webpack-dev-server --inline=false
 
 T> Inline mode is recommended for [Hot Module Replacement](/plugins/hot-module-replacement-plugin/) as it includes an HMR trigger from the websocket. Polling mode can be used as an alternative, but requires an additional entry point, `'webpack/hot/poll?1000'`.
 
-
-## `devServer.lazy` 🔑
-
-`boolean`
-
-When `devServer.lazy` is enabled, the dev-server will only compile the bundle when it gets requested. This means that webpack will not watch any file changes. We call this __lazy mode__.
-
-__webpack.config.js__
-
-```javascript
-module.exports = {
-  //...
-  devServer: {
-    lazy: true
-  }
-};
-```
-
-Usage via the CLI
-
-```bash
-webpack-dev-server --lazy
-```
-
-T> [`watchOptions`](#devserverwatchoptions-) will have no effect when used with __lazy mode__.
-
-T> If you use the CLI, make sure __inline mode__ is disabled.
 
 ## `devServer.liveReload`
 
@@ -1224,7 +1169,7 @@ webpack-dev-server --public myapp.test:80
 
 The bundled files will be available in the browser under this path.
 
-Imagine that the server is running under `http://localhost:8080` and [`output.filename`](/configuration/output/#outputfilename) is set to `bundle.js`. By default the `devServer.publicPath` is `'/'`, so your bundle is available as `http://localhost:8080/bundle.js`.
+Imagine that the server is running under `http://localhost:8080` and the filename is set to `bundle.js`. By default the `devServer.publicPath` is `'/'`, so your bundle is available as `http://localhost:8080/bundle.js`.
 
 Change `devServer.publicPath` to put bundle under specific directory:
 
