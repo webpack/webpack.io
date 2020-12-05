@@ -9,6 +9,7 @@ contributors:
   - wizardofhogwarts
   - EugeneHlushko
   - chenxsan
+  - jamesgeorge007
 ---
 
 The `Compilation` module is used by the `Compiler` to create new compilations
@@ -304,7 +305,7 @@ Triggered after chunk `id` optimization has finished.
 
 `SyncHook`
 
-Store module info to the records. This is triggered if [`shouldRecord`](#shouldrecord) returns a truthy value.
+Store module info to the records. This is triggered only if [`shouldRecord`](#shouldrecord) returns a truthy value.
 
 - Callback Parameters: `modules` `records`
 
@@ -313,7 +314,7 @@ Store module info to the records. This is triggered if [`shouldRecord`](#shouldr
 
 `SyncHook`
 
-Store chunk info to the records. This is only triggered if [`shouldRecord`](#shouldrecord) returns a truthy value.
+Store chunk info to the records. This is triggered only if [`shouldRecord`](#shouldrecord) returns a truthy value.
 
 - Callback Parameters: `chunks` `records`
 
@@ -336,7 +337,7 @@ Called after the compilation is hashed.
 
 `SyncHook`
 
-Store information about record hash to the `records`. This is only triggered if [`shouldRecord`](#shouldrecord) returns a truthy value.
+Store information about record hash to the `records`. This is triggered only if [`shouldRecord`](#shouldrecord) returns a truthy value.
 
 - Callback Parameters: `records`
 
@@ -345,7 +346,7 @@ Store information about record hash to the `records`. This is only triggered if 
 
 `SyncHook`
 
-Store information about the `compilation` to the `records`. This is only triggered if [`shouldRecord`](#shouldrecord) returns a truthy value.
+Store information about the `compilation` to the `records`. This is triggered only if [`shouldRecord`](#shouldrecord) returns a truthy value.
 
 - Callback Parameters: `compilation` `records`
 
