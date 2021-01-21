@@ -139,7 +139,7 @@ import(
 import(/* webpackIgnore: true */ 'ignored-module.js');
 ```
 
-`webpackIgnore`: Disables dynamic import parsing when set to `true`.
+`webpackIgnore`: Disables dynamic import parsing when this is set to `true`.
 
 W> Note that setting `webpackIgnore` to `true` opts out of code splitting.
 
