@@ -493,29 +493,6 @@ module.exports = {
 
 T> Note that [`webpack.HotModuleReplacementPlugin`](/plugins/hot-module-replacement-plugin/) is required to fully enable HMR. If `webpack` or `webpack-dev-server` are launched with the `--hot` option, this plugin will be added automatically, so you may not need to add this to your `webpack.config.js`. See the [HMR concepts page](/concepts/hot-module-replacement/) for more information.
 
-## `devServer.hotOnly`
-
-`boolean`
-
-Enables Hot Module Replacement (see [`devServer.hot`](#devserverhot)) without page refresh as a fallback in case of build failures.
-
-**webpack.config.js**
-
-```javascript
-module.exports = {
-  //...
-  devServer: {
-    hotOnly: true,
-  },
-};
-```
-
-Usage via the CLI
-
-```bash
-npx webpack serve --hot-only
-```
-
 ## `devServer.http2`
 
 `boolean = false`
@@ -595,7 +572,7 @@ module.exports = {
     https: {
       key: fs.readFileSync('/path/to/server.key'),
       cert: fs.readFileSync('/path/to/server.crt'),
-      ca: fs.readFileSync('/path/to/ca.pem'),
+      cacert: fs.readFileSync('/path/to/ca.pem'),
     },
   },
 };
@@ -612,7 +589,7 @@ npx webpack serve --https
 To pass your own certificate via the CLI use the following options
 
 ```bash
-npx webpack serve --https --key ./path/to/server.key --cert ./path/to/server.crt --cacert ./path/to/ca.pem
+npx webpack serve --https-key ./path/to/server.key --https-cert ./path/to/server.crt --https-cacert ./path/to/ca.pem
 ```
 
 ## `devServer.index`
@@ -665,62 +642,6 @@ module.exports = {
 
 W> Make sure that [`devServer.hot`](#devserverhot) is set to `true` because `devServer.injectHot` only works with HMR.
 
-## `devServer.inline`
-
-`boolean`
-
-Toggle between the dev-server's two different modes. By default, the application will be served with _inline mode_ enabled. This means that a script will be inserted in your bundle to take care of live reloading, and build messages will appear in the browser console.
-
-It is also possible to use **iframe mode**, which uses an `<iframe>` under a notification bar with messages about the build. To switch to **iframe mode**:
-
-**webpack.config.js**
-
-```javascript
-module.exports = {
-  //...
-  devServer: {
-    inline: false,
-  },
-};
-```
-
-Usage via the CLI
-
-```bash
-npx webpack serve --inline
-```
-
-Notice that there's no way to disable it from CLI.
-
-T> Inline mode is recommended for [Hot Module Replacement](/plugins/hot-module-replacement-plugin/) as it includes an HMR trigger from the websocket. Polling mode can be used as an alternative, but requires an additional entry point, `'webpack/hot/poll?1000'`.
-
-## `devServer.lazy` 🔑
-
-`boolean`
-
-When `devServer.lazy` is enabled, the dev-server will only compile the bundle when it gets requested. This means that webpack will not watch any file changes. We call this **lazy mode**.
-
-**webpack.config.js**
-
-```javascript
-module.exports = {
-  //...
-  devServer: {
-    lazy: true,
-  },
-};
-```
-
-Usage via the CLI
-
-```bash
-npx webpack serve --lazy
-```
-
-T> [`watchOptions`](#devserverwatchoptions-) will have no effect when used with **lazy mode**.
-
-T> If you use the CLI, make sure **inline mode** is disabled.
-
 ## `devServer.liveReload`
 
 `boolean = true`
@@ -763,23 +684,6 @@ module.exports = {
   //...
   devServer: {
     mimeTypes: { 'text/html': ['phtml'] },
-  },
-};
-```
-
-## `devServer.noInfo` 🔑
-
-`boolean = false`
-
-Tells dev-server to suppress messages like the webpack bundle information. Errors and warnings will still be shown.
-
-**webpack.config.js**
-
-```javascript
-module.exports = {
-  //...
-  devServer: {
-    noInfo: true,
   },
 };
 ```
@@ -856,52 +760,6 @@ npx webpack serve --open 'Google Chrome'
 ```
 
 T> The browser application name is platform dependent. Don't hard code it in reusable modules. For example, `'Chrome'` is `'Google Chrome'` on macOS, `'google-chrome'` on Linux and `'chrome'` on Windows.
-
-## `devServer.openPage`
-
-`string` `[string]`
-
-Specify a page to navigate to when opening the browser.
-
-**webpack.config.js**
-
-```javascript
-module.exports = {
-  //...
-  devServer: {
-    open: true,
-    openPage: 'different/page',
-  },
-};
-```
-
-Usage via the CLI
-
-```bash
-npx webpack serve --open --open-page different/page
-```
-
-W> Do not prepend `/` for the page as webpack-dev-server will do it automatically, otherwise the browser will open urls like `http://localhost:8080//different/page`.
-
-If you wish to specify multiple pages to open in the browser.
-
-**webpack.config.js**
-
-```javascript
-module.exports = {
-  //...
-  devServer: {
-    open: true,
-    openPage: ['different/page1', 'different/page2'],
-  },
-};
-```
-
-Usage via the CLI
-
-```bash
-npx webpack serve --open --open-page different/page1 --open-page different/page2
-```
 
 ## `devServer.overlay`
 
@@ -1229,29 +1087,6 @@ The bundle will also be available as `http://localhost:8080/assets/bundle.js`.
 
 T> It is recommended that `devServer.publicPath` is the same as [`output.publicPath`](/configuration/output/#outputpublicpath).
 
-## `devServer.quiet` 🔑
-
-`boolean`
-
-With `devServer.quiet` enabled, nothing except the initial startup information will be written to the console. This also means that errors or warnings from webpack are not visible.
-
-**webpack.config.js**
-
-```javascript
-module.exports = {
-  //...
-  devServer: {
-    quiet: true,
-  },
-};
-```
-
-Usage via the CLI
-
-```bash
-npx webpack serve --quiet
-```
-
 ## `devServer.serveIndex`
 
 `boolean = true`
@@ -1371,39 +1206,6 @@ module.exports = {
 
 T> This only works when using [`devServer.contentBase`](#devservercontentbase) as a `string`.
 
-## `devServer.stats` 🔑
-
-`string: 'none' | 'errors-only' | 'minimal' | 'normal' | 'verbose'` `object`
-
-This option lets you precisely control what bundle information gets displayed. This can be a nice middle ground if you want some bundle information, but not all of it.
-
-To show only errors in your bundle:
-
-**webpack.config.js**
-
-```javascript
-module.exports = {
-  //...
-  devServer: {
-    stats: 'errors-only',
-  },
-};
-```
-
-For more information, see the [**stats documentation**](/configuration/stats/).
-
-T> This option has no effect when used with `quiet` or `noInfo`.
-
-## `devServer.stdin` - CLI only
-
-`boolean`
-
-This option closes the server when stdin ends.
-
-```bash
-npx webpack serve --stdin
-```
-
 ## `devServer.transportMode`
 
 `string = 'sockjs': 'sockjs' | 'ws'` `object`
@@ -1497,52 +1299,6 @@ module.exports = {
     },
   },
 };
-```
-
-## `devServer.useLocalIp`
-
-`boolean`
-
-This option lets the browser open with your local IP.
-
-**webpack.config.js**
-
-```javascript
-module.exports = {
-  //...
-  devServer: {
-    useLocalIp: true,
-  },
-};
-```
-
-Usage via the CLI
-
-```bash
-npx webpack serve --useLocalIp
-```
-
-## `devServer.watchContentBase`
-
-`boolean`
-
-Tell dev-server to watch the files served by the [`devServer.contentBase`](#devservercontentbase) option. It is disabled by default. When enabled, file changes will trigger a full page reload.
-
-**webpack.config.js**
-
-```javascript
-module.exports = {
-  //...
-  devServer: {
-    watchContentBase: true,
-  },
-};
-```
-
-Usage via the CLI
-
-```bash
-npx webpack serve --watch-content-base
 ```
 
 ## `devServer.watchOptions` 🔑
