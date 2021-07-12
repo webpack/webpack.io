@@ -3,6 +3,7 @@ title: Logger Interface
 sort: 6
 contributors:
   - EugeneHlushko
+  - anikethsaha
   - wizardofhogwarts
   - chenxsan
 ---
@@ -58,6 +59,38 @@ module.exports = function (source) {
   return source;
 };
 ```
+
+__How to get the logger ?__
+
+- If you want to store the logs in the Stats, you should use `compilation.getLogger('PluginName')`
+
+  ```javascript
+  // example
+
+  pluginName.prototype.apply = function(compiler){
+    // get the compilation object by tapping in a compiler hook
+    compiler.hooks.emit.tapAsync('PluginName', (compilation, callback) => {
+      const logger = compilation.getLogger('PluginName');
+    });
+  };
+
+  ```
+
+- If you dont want to store your logs in the Stats, use `infrastructure` logging
+
+  ```javascript
+  // example
+
+  pluginName.prototype.apply = function(compiler){
+    const logger = compiler.getInfrastructureLogger('PluginName');
+  };
+  ```
+
+- if you want to get the logger from webpack as a Node.js API, use
+
+  ```javascript
+  const { Logger } = require('webpack/lib/logging/Logger');
+  ```
 
 ## Logger methods
 
