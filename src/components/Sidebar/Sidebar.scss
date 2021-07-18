@@ -16,9 +16,7 @@
 .sidebar__inner {
   padding: 1.5em;
   position: sticky;
-  top: -1px;
   overflow: scroll;
-  max-height: 100vh;
   // To hide scrollbar in Firefox
   scrollbar-width: none;
   // To hide scrollbar in Chrome
