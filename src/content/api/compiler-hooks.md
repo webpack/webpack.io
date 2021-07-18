@@ -9,12 +9,13 @@ contributors:
   - misterdev
   - EugeneHlushko
   - superburrito
+  - wizardofhogwarts
   - chenxsan
 ---
 
 The `Compiler` module is the main engine that creates a compilation instance
 with all the options passed through the [CLI](/api/cli) or [Node API](/api/node). It extends the
-`Tapable` class in order to register and call plugins. Most user facing plugins
+`Tapable` class in order to register and call plugins. Most user-facing plugins
 are first registered on the `Compiler`.
 
 When developing a plugin for webpack, you might want to know where each hook is called. To learn this, search for `hooks.<hook name>.call` across the webpack source
