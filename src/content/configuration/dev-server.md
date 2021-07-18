@@ -797,7 +797,7 @@ module.exports = {
   //...
   devServer: {
     onListening: function (server) {
-      const port = server.listeningApp.address().port;
+      const port = server.server.address().port;
       console.log('Listening on port:', port);
     },
   },
