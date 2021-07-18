@@ -1,6 +1,6 @@
 ---
 title: License
-sort: 5
+sort: 6
 contributors:
   - EugeneHlushko
   - pranshuchittora
