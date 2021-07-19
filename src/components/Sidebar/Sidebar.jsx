@@ -13,6 +13,8 @@ import LoadingIcon from '../../styles/icons/loading.svg';
 const versions = [5, 4];
 const currentDocsVersion = 5;
 
+const excludedPages = ['/webpack/options/'];
+
 Sidebar.propTypes = {
   className: PropTypes.string,
   pages: PropTypes.array,
@@ -69,26 +71,28 @@ export default function Sidebar({ className = '', pages, currentPage }) {
         </div>
         <Print url={currentPage} />
 
-        {pages.map((page, index) => {
-          let displayGroup = group !== page.group && page.group !== '-';
-          group = page.group;
+        {pages
+          .filter((page) => excludedPages.includes(page.url) === false)
+          .map((page, index) => {
+            let displayGroup = group !== page.group && page.group !== '-';
+            group = page.group;
 
-          return (
-            <div key={page.url}>
-              {displayGroup ? (
-                <h4 className="sidebar__group">{group}</h4>
-              ) : null}
+            return (
+              <div key={page.url}>
+                {displayGroup ? (
+                  <h4 className="sidebar__group">{group}</h4>
+                ) : null}
 
-              <SidebarItem
-                index={index}
-                url={page.url}
-                title={page.title}
-                anchors={page.anchors}
-                currentPage={currentPage}
-              />
-            </div>
-          );
-        })}
+                <SidebarItem
+                  index={index}
+                  url={page.url}
+                  title={page.title}
+                  anchors={page.anchors}
+                  currentPage={currentPage}
+                />
+              </div>
+            );
+          })}
       </div>
     </nav>
   );
